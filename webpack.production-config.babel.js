@@ -3,7 +3,7 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import WebpackNotifierPlugin from 'webpack-notifier';
 
 export default {
-  entry: './src/ts/index.tsx',
+  entry: './src/ts/app/index.tsx',
   output: {
     path: `${__dirname}/dist`,
     filename: 'js/app.js'

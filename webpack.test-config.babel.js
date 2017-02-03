@@ -1,0 +1,34 @@
+const path = require('path');
+const webpack = require('webpack');
+
+module.exports = {
+  devtool: 'inline-source-map',
+  module: {
+    loaders: [
+      {
+        loader: 'json-loader',
+        test: /\.json$/
+      },
+      {
+        loader: 'raw',
+        test: /\.(css|html)$/
+      },
+      {
+        loaders: ['babel-loader', 'ts-loader'],
+        test: /\.(ts|tsx)$/,
+        exclude: /node_modules/
+      }
+    ]
+  },
+  resolve: {
+    extensions: ['', '.js', '.ts'],
+    modulesDirectories: ['node_modules'],
+    root: path.resolve('.', 'src')
+  },
+  externals: {
+    console: '{}',
+    fs: '{}',
+    net: '{}',
+    tls: '{}'
+  }
+};

@@ -9,12 +9,18 @@
     "experimentalDecorators": true,
     "removeComments": true,
     "noImplicitAny": false,
-    "removeComments": true
+    "removeComments": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "types": [
+      "jasmine"
+    ]
   },
   "filesGlob": [
     "src/ts/**/**/*.{ts,tsx}"
   ],
-  "exclude": [
-    "node_modules"
+  "include": [
+    "node_modules/@types"
   ]
 }
