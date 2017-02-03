@@ -1,7 +1,6 @@
 import {} from 'jasmine';
 
 import {
-  ActionTypes,
   AddTodoAction,
   DeleteTodoAction,
   ToggleTodoCompleteAction
@@ -34,5 +33,17 @@ describe('Task Reducer', () => {
     const actual = taskReducer(stateWithTask, DeleteTodoAction({ id: 1 }));
     const expected = [];
     expect(actual).toEqual(expected);
+  });
+  it('Should Add Task, Toggle Task, and Delete Task in Sequence', () => {
+    const addedTask = { id: 1, title: '123123', isComplete: false };
+    const stateWithTask = taskReducer(initialState, AddTodoAction(addedTask));
+    const expectedStateWithTask = [addedTask];
+    expect(stateWithTask).toEqual(expectedStateWithTask);
+    const toggledTaskState = taskReducer(stateWithTask, ToggleTodoCompleteAction({ id: 1 }));
+    const expectedToggledTaskState = [{ id: 1, title: '123123', isComplete: true }];
+    expect(toggledTaskState).toEqual(expectedToggledTaskState);
+    const stateWithoutTask = taskReducer(toggledTaskState, DeleteTodoAction({ id: 1 }));
+    const expectedStateWithoutTask = [];
+    expect(stateWithoutTask).toEqual(expectedStateWithoutTask);
   });
 });
