@@ -15,13 +15,13 @@ module.exports = {
       },
       {
         loaders: ['babel-loader', 'ts-loader'],
-        test: /\.(ts|tsx)$/,
+        test: /\.tsx$|\.ts$/,
         exclude: /node_modules/
       }
     ]
   },
   resolve: {
-    extensions: ['', '.js', '.ts'],
+    extensions: ['', '.js', '.ts', '.tsx'],
     modulesDirectories: ['node_modules'],
     root: path.resolve('.', 'src')
   },

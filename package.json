@@ -19,6 +19,7 @@
     "@types/redux": "^3.6.0",
     "bootstrap": "^3.3.7",
     "bootstrap-sass": "^3.3.7",
+    "core-js": "^2.4.1",
     "fs": "0.0.1-security",
     "jquery": "^3.1.1",
     "react": "^15.4.1",

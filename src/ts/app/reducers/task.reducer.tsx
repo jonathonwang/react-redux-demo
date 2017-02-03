@@ -1,8 +1,7 @@
 import { handleActions, Action } from 'redux-actions';
 import { ActionTypes } from '../actions/task.actions';
 
-
-const initialState = [];
+export const initialState = [];
 
 export const taskReducer = handleActions<any, any>({
   [ActionTypes.ADD_TODO]: (state: any, action: Action<any>): any => {
