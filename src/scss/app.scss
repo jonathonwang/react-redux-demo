@@ -1,2 +1,5 @@
 $bootstrap-sass-asset-helper: true;
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
+
+@import 'components/alert';
+@import 'components/helpers';
