@@ -2,12 +2,10 @@ import * as React from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
-import { AddTodoAction, DeleteTodoAction, ToggleTodoCompleteAction } from '../actions/task.actions';
+import { UpdateCreateFieldAction } from '../actions/create-form.actions';
+import { HideAlertAction } from '../actions/alert.actions';
 
-import { UpdateCreateFieldAction, ClearCreateFormAction } from '../actions/create-form.actions';
-import { ShowAlertAction, HideAlertAction } from '../actions/alert.actions';
-
-import { FetchTasks } from '../api/task.api';
+import { FetchTasks, CreateTask, DeleteTask, ToggleTaskComplete } from '../api/task.api';
 
 // Component Imports
 import CreateFormComponent from '../components/create-form.component';
@@ -22,22 +20,6 @@ interface AppComponentProps {
 }
 
 export class AppComponent extends React.Component<AppComponentProps, void> {
-  validateTask() {
-    const { createForm } = this.props;
-    if (createForm.title > 0) {
-      this.createTask();
-    } else {
-      this.failTaskCreate();
-    }
-  }
-  createTask() {
-    this.props.dispatch(AddTodoAction(this.props.createForm));
-    this.props.dispatch(ClearCreateFormAction());
-    this.props.dispatch(ShowAlertAction({ status: 'success', message: 'Task Successfully Created' }));
-  }
-  failTaskCreate() {
-    this.props.dispatch(ShowAlertAction({ status: 'danger', message: 'Task Title is Required' }));
-  }
   componentDidMount() {
     this.props.dispatch(FetchTasks());
   }
@@ -48,8 +30,8 @@ export class AppComponent extends React.Component<AppComponentProps, void> {
       <TaskListComponent
         task={task}
         key={task.id}
-        deleteTask={(id) => dispatch(DeleteTodoAction({ id }))}
-        toggleComplete={(id) => dispatch(ToggleTodoCompleteAction({ id }))}
+        deleteTask={(id) => dispatch(DeleteTask({ id }))}
+        toggleComplete={(task) => dispatch(ToggleTaskComplete({ task }))}
       />
     ));
 
@@ -71,7 +53,7 @@ export class AppComponent extends React.Component<AppComponentProps, void> {
               <CreateFormComponent
                 createForm={createForm}
                 handleInputUpdate={(title) => dispatch(UpdateCreateFieldAction({ title }))}
-                handleSubmitForm={() => this.validateTask()}
+                handleSubmitForm={() => dispatch(CreateTask(createForm))}
               />
               {taskList}
             </ul>

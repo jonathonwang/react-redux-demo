@@ -14,7 +14,8 @@ export const taskReducer = handleActions<any, any>({
     return state.filter((task) => task.id !== action.payload.id);
   },
   [ActionTypes.TOGGLE_TODO]: (state: any, action: Action<any>): any => {
-    return state.map(task => {
+    // console.log(state[0]);
+    return state.map((task) => {
       if (task.id === action.payload.id) {
         return Object.assign({}, task, { isComplete: !task.isComplete });
       } else {
