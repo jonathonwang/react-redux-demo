@@ -28,12 +28,15 @@
     "react-redux": "^4.4.6",
     "react-router": "^3.0.0",
     "redux": "^3.6.0",
-    "redux-actions": "^1.2.1"
+    "redux-actions": "^1.2.1",
+    "redux-thunk": "^2.2.0",
+    "whatwg-fetch": "^2.0.2"
   },
   "devDependencies": {
     "@types/jasmine": "^2.5.41",
     "@types/react-addons-test-utils": "^0.14.17",
     "@types/redux-actions": "^1.2.2",
+    "@types/whatwg-fetch": "0.0.33",
     "autoprefixer": "^6.5.3",
     "autoprefixer-loader": "^3.2.0",
     "babel-core": "^6.18.2",

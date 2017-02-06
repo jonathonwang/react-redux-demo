@@ -1,4 +1,5 @@
-import { combineReducers, createStore } from 'redux';
+import { combineReducers, createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 
 import { taskReducer } from './task.reducer';
 import { alertReducer } from './alert.reducer';
@@ -10,4 +11,7 @@ const reducers = combineReducers({
   alert: alertReducer
 });
 
-export const store = createStore(reducers);
+export const store = createStore(
+  reducers,
+  applyMiddleware(thunk)
+);

@@ -15,7 +15,8 @@
     ],
     "types": [
       "jasmine",
-      "react-addons-test-utils"
+      "react-addons-test-utils",
+      "whatwg-fetch"
     ]
   },
   "filesGlob": [

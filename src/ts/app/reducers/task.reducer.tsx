@@ -4,6 +4,9 @@ import { ActionTypes } from '../actions/task.actions';
 export const initialState = [];
 
 export const taskReducer = handleActions<any, any>({
+  [ActionTypes.INJECT_TODOS]: (state: any, action: Action<any>): any => {
+    return [...state, ...action.payload.tasks];
+  },
   [ActionTypes.ADD_TODO]: (state: any, action: Action<any>): any => {
     return [...state, action.payload];
   },

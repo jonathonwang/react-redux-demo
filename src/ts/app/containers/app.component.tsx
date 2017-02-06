@@ -7,6 +7,8 @@ import { AddTodoAction, DeleteTodoAction, ToggleTodoCompleteAction } from '../ac
 import { UpdateCreateFieldAction, ClearCreateFormAction } from '../actions/create-form.actions';
 import { ShowAlertAction, HideAlertAction } from '../actions/alert.actions';
 
+import { FetchTasks } from '../api/task.api';
+
 // Component Imports
 import CreateFormComponent from '../components/create-form.component';
 import TaskListComponent from '../components/task-list.component';
@@ -35,6 +37,9 @@ export class AppComponent extends React.Component<AppComponentProps, void> {
   }
   failTaskCreate() {
     this.props.dispatch(ShowAlertAction({ status: 'danger', message: 'Task Title is Required' }));
+  }
+  componentDidMount() {
+    this.props.dispatch(FetchTasks());
   }
   render() {
     const { tasks, createForm, alert, dispatch } = this.props;
