@@ -14,8 +14,9 @@ export class AlertComponent extends React.Component<any, any> {
   }
   render() {
     const { alert } = this.props;
+    const alertClasses = classNames('alert', 'alert-dismissable', `alert-${alert.status}`, { 'alert--visible': alert.visible });
     return (
-      <div className={classNames('alert', 'alert-dismissable', `alert-${alert.status}`, { 'alert--visible': alert.visible })}>
+      <div className={alertClasses}>
         <a href='#' className='close' aria-label='close' onClick={(event) => this.closeAlert(event)}>&times;</a>
         <strong className='text-capitalize'>{alert.status}!</strong> <span className='text-capitalize'>{alert.message}.</span>
       </div>
