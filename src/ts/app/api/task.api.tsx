@@ -32,6 +32,7 @@ const checkResponse = (response, successCb: any, errorCb: any) => {
   }
 };
 
+// GET Request to Fetch all tasks in DB
 export const FetchTasks = () => {
   return (dispatch) => {
     return fetch(`${baseUrl}/tasks`, { method: 'GET' })
@@ -44,6 +45,9 @@ export const FetchTasks = () => {
     });
   };
 };
+
+// POST Request to Create new Task
+// Also checks length of title before sending Request
 export const CreateTask = (taskData) => {
   const newTaskData = JSON.stringify(taskData);
   return (dispatch) => {
@@ -67,6 +71,8 @@ export const CreateTask = (taskData) => {
   }
   };
 };
+
+// DELETE Request to delete Task
 export const DeleteTask = (taskData) => {
   return (dispatch) => {
     return fetch(`${baseUrl}/tasks/${taskData.id}`, { method: 'DELETE' })
@@ -82,8 +88,10 @@ export const DeleteTask = (taskData) => {
     });
   };
 };
+
+// PUT Request to toggle Task isComplete
 export const ToggleTaskComplete = (taskData) => {
-  let toggleTaskData = JSON.parse(JSON.stringify(taskData)); // Deep clone of Object to avoid reference to state Object
+  let toggleTaskData = JSON.parse(JSON.stringify(taskData)); // Shallow clone of Object to avoid reference to state Object
   toggleTaskData.task.isComplete = !toggleTaskData.task.isComplete;
   toggleTaskData = JSON.stringify(toggleTaskData.task);
   return (dispatch, getState) => {
@@ -98,7 +106,7 @@ export const ToggleTaskComplete = (taskData) => {
   };
 };
 
-
+// Export as Object containing methods by default
 export default {
   FetchTasks,
   CreateTask,
