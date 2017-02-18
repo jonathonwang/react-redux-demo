@@ -35,7 +35,7 @@ interface IAppComponentState {
 }
 
 export class AppComponent extends React.Component<IAppComponentProps, void> {
-  componentDidMount(): void {
+  private componentDidMount(): void {
     const { dispatch } = this.props;
     dispatch(FetchTasks());
   }

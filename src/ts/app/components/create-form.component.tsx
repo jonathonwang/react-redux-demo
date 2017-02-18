@@ -15,7 +15,7 @@ interface IAlertComponentState {
 }
 
 export class CreateFormComponent extends React.Component<IAlertComponentProps, IAlertComponentState> {
-  submitCreateForm(event: any): void {
+  private submitCreateForm(event: any): void {
     const { handleSubmitForm } = this.props;
     event.preventDefault();
     handleSubmitForm();

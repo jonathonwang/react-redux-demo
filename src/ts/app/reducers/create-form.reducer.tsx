@@ -6,19 +6,19 @@ export interface ICreateFormState {
   isComplete: boolean;
 }
 
-const initialState: ICreateFormState = {
+export const initialState: ICreateFormState = {
   title: '',
   isComplete: false
 };
 
 export const createFormReducer = handleActions<ICreateFormState>({
-  [ActionTypes.UPDATE_CREATE_FORM_FIELD]: (state: any, action: Action<any>): any => {
+  [ActionTypes.UPDATE_CREATE_FORM_FIELD]: (state: ICreateFormState, action: Action<{ title: string }>): any => {
     return {
       title: action.payload.title,
       isComplete: state.isComplete
     };
   },
-  [ActionTypes.CLEAR_CREATE_FORM]: (state: any, action: Action<any>): any => {
+  [ActionTypes.CLEAR_CREATE_FORM]: (state: ICreateFormState, action: Action<void>): any => {
     return {
       title: '',
       isComplete: false

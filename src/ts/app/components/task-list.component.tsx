@@ -4,12 +4,11 @@ import { ITask } from '../reducers/task.reducer';
 
 interface ITaskListComponentProps {
   task: ITask;
-  deleteTask(): void;
-  toggleComplete(task: ITask);
-  deleteTask(id: any);
+  deleteTask(id: any): void;
+  toggleComplete(task: ITask): void;
 }
 
-export class TaskListComponent extends React.Component<any, void> {
+export class TaskListComponent extends React.Component<ITaskListComponentProps, void> {
   render() {
     const { task, deleteTask, toggleComplete } = this.props;
     return (
