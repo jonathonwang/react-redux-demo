@@ -28,7 +28,7 @@ export class AlertComponent extends React.Component<IAlertComponentProps, IAlert
     return (
       <div className={alertClasses}>
         <a href='#' className='close' aria-label='close' onClick={(event) => this.closeAlert(event)}>&times;</a>
-        <strong className='text-capitalize'>{alert.status}!</strong> <span className='text-capitalize'>{alert.message}.</span>
+        <strong  id='alert-status' className='text-capitalize'>{alert.status}!</strong> <span id='alert-message' className='text-capitalize'>{alert.message}.</span>
       </div>
     );
   }

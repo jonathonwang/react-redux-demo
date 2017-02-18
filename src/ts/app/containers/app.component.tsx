@@ -7,7 +7,12 @@ import { UpdateCreateFieldAction } from '../actions/create-form.actions';
 import { HideAlertAction } from '../actions/alert.actions';
 
 // Async Action Imports
-import { FetchTasks, CreateTask, DeleteTask, ToggleTaskComplete } from '../api/task.api';
+import {
+  FetchTasks,
+  CreateTask,
+  DeleteTask,
+  ToggleTaskComplete
+} from '../api/task.api';
 
 // Component Imports
 import CreateFormComponent from '../components/create-form.component';

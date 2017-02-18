@@ -6,8 +6,8 @@ import TaskListComponent from '../../../app/components/task-list.component';
 
 describe('Task List Component', () => {
   let wrapper;
-  let deleteMethod = jasmine.createSpy('deleteMethod');
-  let toggleMethod = jasmine.createSpy('toggleMethod');
+  const deleteMethod = jasmine.createSpy('deleteMethod');
+  const toggleMethod = jasmine.createSpy('toggleMethod');
   beforeEach(() => {
     const testTask = { id: 1, title: '123123', isComplete: false };
     deleteMethod.calls.reset();
