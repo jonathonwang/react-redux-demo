@@ -1,15 +1,19 @@
 import { handleActions, Action } from 'redux-actions';
 import { ActionTypes } from '../actions/alert.actions';
 
-interface IAlertState {
+export interface IAlertState {
   status: string;
   message: string;
   visible: boolean;
 }
 
-export const initialState: IAlertState = { status: '', message: '', visible: false };
+export const initialState: IAlertState = {
+   status: '',
+  message: '',
+  visible: false
+ };
 
-export const alertReducer = handleActions<any, any>({
+export const alertReducer = handleActions<IAlertState>({
   [ActionTypes.SHOW_ALERT]: (state: any, action: Action<any>): any => {
     return {
       status: action.payload.status,

@@ -1,9 +1,15 @@
 import { handleActions, Action } from 'redux-actions';
 import { ActionTypes } from '../actions/task.actions';
 
-export const initialState = [];
+export interface ITask {
+  id: number;
+  title: string;
+  isComplete: boolean;
+}
 
-export const taskReducer = handleActions<any, any>({
+export const initialState: Array<ITask> = [];
+
+export const taskReducer = handleActions<Array<{}>>({
   [ActionTypes.INJECT_TODOS]: (state: any, action: Action<any>): any => {
     return [...state, ...action.payload.tasks];
   },

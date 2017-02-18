@@ -1,13 +1,17 @@
 import { handleActions, Action } from 'redux-actions';
 import { ActionTypes } from '../actions/create-form.actions';
 
+export interface ICreateFormState {
+  title: string;
+  isComplete: boolean;
+}
 
-const initialState = {
+const initialState: ICreateFormState = {
   title: '',
   isComplete: false
 };
 
-export const createFormReducer = handleActions<any, any>({
+export const createFormReducer = handleActions<ICreateFormState>({
   [ActionTypes.UPDATE_CREATE_FORM_FIELD]: (state: any, action: Action<any>): any => {
     return {
       title: action.payload.title,

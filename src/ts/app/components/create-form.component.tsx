@@ -2,10 +2,23 @@ import * as React from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
-export class CreateFormComponent extends React.Component<any, any> {
+import { ICreateFormState } from '../reducers/create-form.reducer';
+
+interface IAlertComponentProps {
+  createForm: ICreateFormState;
+  handleInputUpdate(value: string);
+  handleSubmitForm();
+}
+
+interface IAlertComponentState {
+  handleSubmitForm(event: any): void;
+}
+
+export class CreateFormComponent extends React.Component<IAlertComponentProps, IAlertComponentState> {
   submitCreateForm(event: any): void {
+    const { handleSubmitForm } = this.props;
     event.preventDefault();
-    this.props.handleSubmitForm();
+    handleSubmitForm();
   }
   render() {
     const { createForm, handleInputUpdate, handleSubmitForm } = this.props;

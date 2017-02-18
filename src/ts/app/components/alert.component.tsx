@@ -1,20 +1,30 @@
 import * as React from 'react';
 import classNames from 'classnames';
 
-interface IAlertComponentProps {
-  status: string;
-  message: string;
-  visible: boolean;
+import { IAlertState } from '../reducers/alert.reducer';
+
+interface IAlertComponent {
+  closeAlert(event: any): void;
+  render(): JSX.Element;
 }
 
-export class AlertComponent extends React.Component<any, any> {
+interface IAlertComponentProps {
+  alert: IAlertState;
+  closeAlert(): void;
+}
+
+interface IAlertComponentState {
+  closeAlert(event: any): void;
+}
+
+export class AlertComponent extends React.Component<IAlertComponentProps, IAlertComponentState> implements IAlertComponent {
   closeAlert(event: any): void {
     event.preventDefault();
     this.props.closeAlert();
   }
-  render() {
+  render(): JSX.Element {
     const { alert } = this.props;
-    const alertClasses = classNames('alert', 'alert-dismissable', `alert-${alert.status}`, { 'alert--visible': alert.visible });
+    const alertClasses: string = classNames('alert', 'alert-dismissable', `alert-${alert.status}`, { 'alert--visible': alert.visible });
     return (
       <div className={alertClasses}>
         <a href='#' className='close' aria-label='close' onClick={(event) => this.closeAlert(event)}>&times;</a>

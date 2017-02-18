@@ -6,7 +6,7 @@
   "scripts": {
     "test": "karma start karma.conf.babel.js",
     "test:headless": "karma start karma.conf.babel.js --browsers PhantomJS",
-    "json-server": "json-server -c ./json-server.json --watch db.json"
+    "json-server": "json-server --watch db.json"
   },
   "author": "",
   "license": "ISC",

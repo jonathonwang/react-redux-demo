@@ -1,6 +1,15 @@
 import * as React from 'react';
 
-export class TaskListComponent extends React.Component<any, any> {
+import { ITask } from '../reducers/task.reducer';
+
+interface ITaskListComponentProps {
+  task: ITask;
+  deleteTask(): void;
+  toggleComplete(task: ITask);
+  deleteTask(id: any);
+}
+
+export class TaskListComponent extends React.Component<any, void> {
   render() {
     const { task, deleteTask, toggleComplete } = this.props;
     return (
