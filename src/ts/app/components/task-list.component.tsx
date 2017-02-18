@@ -17,9 +17,9 @@ export class TaskListComponent extends React.Component<ITaskListComponentProps, 
           <button className='btn btn-primary btn-xs' onClick={() => toggleComplete(task)}>
             {task.isComplete ? 'Set Incomplete' : 'Set Complete'}
           </button>
-          <span style={{'marginLeft': '10px'}}>id: {task.id}</span>
-          <span style={{'marginLeft': '10px'}}>title: {task.title}</span>
-          <span style={{'marginLeft': '10px'}}>isComplete: {task.isComplete + ''}</span>
+          <span id='task-id' style={{'marginLeft': '10px'}}>id: {task.id}</span>
+          <span id='task-title' style={{'marginLeft': '10px'}}>title: {task.title}</span>
+          <span id='task-status' style={{'marginLeft': '10px'}}>isComplete: {task.isComplete + ''}</span>
 
           <button className='btn btn-danger btn-xs pull-right' onClick={() => deleteTask(task.id)}>Delete</button>
         </p>
