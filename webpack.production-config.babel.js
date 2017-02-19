@@ -15,7 +15,7 @@ export default {
     loaders: [
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style', 'css-loader?minimize!sass-loader')
+        loader: ExtractTextPlugin.extract('style', 'css-loader?minimize!postcss-loader!sass-loader')
       },
       {
         test: /\.tsx$|\.ts$/,
@@ -25,7 +25,7 @@ export default {
     ]
   },
   plugins: [
-    new WebpackNotifierPlugin({title: 'Webpack'}),
+    new WebpackNotifierPlugin({title: 'Webpack Production'}),
     new ExtractTextPlugin('css/app.css'),
     new webpack.DefinePlugin({
       'process.env':{

@@ -16,7 +16,7 @@ export default {
     loaders: [
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style', 'css-loader!sass-loader')
+        loader: ExtractTextPlugin.extract('style', 'css-loader?sourceMap!postcss-loader?sourceMap!sass-loader?sourceMap')
       },
       {
         test: /\.tsx$|\.ts$/,
@@ -26,7 +26,7 @@ export default {
     ]
   },
   plugins: [
-    new WebpackNotifierPlugin({title: 'Webpack', noisy: true}),
-    new ExtractTextPlugin('css/app.css'),
+    new WebpackNotifierPlugin({title: 'Webpack Development', noisy: true}),
+    new ExtractTextPlugin('css/app.css', {allChunks: true}),
   ]
 };

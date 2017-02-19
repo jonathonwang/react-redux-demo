@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const WebpackNotifierPlugin = require('webpack-notifier');
 
 module.exports = {
   devtool: 'inline-source-map',
@@ -25,7 +26,11 @@ module.exports = {
     modulesDirectories: ['node_modules'],
     root: path.resolve('.', 'src')
   },
+  plugins: [
+    new WebpackNotifierPlugin({title: 'Webpack Tests', noisy: true}),
+  ],
   externals: {
+    // Fix for Typings
     console: '{}',
     fs: '{}',
     net: '{}',
