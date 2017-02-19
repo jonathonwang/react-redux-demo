@@ -15,7 +15,6 @@
     ],
     "types": [
       "jasmine",
-      "react-addons-test-utils",
       "whatwg-fetch"
     ]
   },

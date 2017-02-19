@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as TestUtils from 'react-addons-test-utils';
 import { shallow } from 'enzyme';
 
 import TaskListComponent from '../../../app/components/task-list.component';
@@ -20,7 +19,7 @@ describe('Task List Component', () => {
       />
     );
   });
-  it('Should Render as an <li> Element', () => {
+  it('Should Render Correctly', () => {
     const wrapperElement = wrapper.type();
     expect(wrapperElement).toEqual('li');
     const wrapperClass = wrapper.props().className;

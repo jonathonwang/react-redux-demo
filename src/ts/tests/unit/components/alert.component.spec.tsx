@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as TestUtils from 'react-addons-test-utils';
 import { shallow } from 'enzyme';
 
 import AlertComponent from '../../../app/components/alert.component';

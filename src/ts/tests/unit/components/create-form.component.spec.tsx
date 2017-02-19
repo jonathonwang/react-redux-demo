@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as TestUtils from 'react-addons-test-utils';
 import { shallow } from 'enzyme';
 
 import CreateFormComponent from '../../../app/components/create-form.component';
@@ -42,13 +41,13 @@ describe('Create Form Component', () => {
     const textInputValue = textInput.props().value;
     expect(textInputValue).toEqual(createFormWithTitle.title);
   });
-  it('Should Run updateInputMethod', () => {
+  it('Input Change Should Run updateInputMethod', () => {
     const textInput = wrapper.find('input');
     textInput.simulate('change', { target: { value: 'Hello' } });
     expect(updateInputMethod).toHaveBeenCalled();
     expect(updateInputMethod.calls.count()).toEqual(1);
   });
-  it('Should Run submitFormMethod', () => {
+  it('Form Submit Should Run submitFormMethod', () => {
     const formElement = wrapper.find('form');
     formElement.simulate('submit', { preventDefault() {} });
     expect(submitFormMethod).toHaveBeenCalled();
