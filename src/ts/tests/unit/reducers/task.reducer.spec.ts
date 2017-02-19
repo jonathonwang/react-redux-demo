@@ -1,14 +1,24 @@
 import {} from 'jasmine';
 
 import {
+  InjectRetrievedTodos,
   AddTodoAction,
   DeleteTodoAction,
   ToggleTodoCompleteAction
 } from '../../../app/actions/task.actions';
 
-import { initialState, taskReducer } from '../../../app/reducers/task.reducer';
+import {
+  initialState,
+  taskReducer
+} from '../../../app/reducers/task.reducer';
 
 describe('Task Reducer', () => {
+  it('Should Return State with Tasks Injected', () => {
+    const injectableTasks = [{ id: 1, title: '123', isComplete: false  }, { id: 2, title: '123', isComplete: false  }];
+    const actual = taskReducer(initialState, InjectRetrievedTodos({ tasks: injectableTasks }));
+    const expected = injectableTasks;
+    expect(actual).toEqual(expected);
+  });
   it('Should Return State with Task Added', () => {
     const addedTask = { id: 1, title: '123', isComplete: false  };
     const actual = taskReducer(initialState, AddTodoAction(addedTask));

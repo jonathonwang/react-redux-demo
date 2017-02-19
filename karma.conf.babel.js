@@ -12,7 +12,8 @@ module.exports = function (config) {
       require('karma-remap-istanbul'),
       require('karma-webpack'),
       require('karma-sourcemap-loader'),
-      require('karma-spec-reporter')
+      require('karma-spec-reporter'),
+      require('karma-osx-reporter')
     ],
     files: [
       './src/ts/tests/unit/karma.entry.ts'
@@ -31,6 +32,7 @@ module.exports = function (config) {
     // },
     reporters: [
       'spec',
+      'osx'
       // 'progress'
       // 'karma-remap-istanbul'
     ],
@@ -40,6 +42,9 @@ module.exports = function (config) {
     autoWatch: true,
     browsers: ['Chrome', 'PhantomJS'],
     singleRun: false,
+    osxReporter: {
+      notificationMode: 'failChange'
+    },
     phantomJsLauncher: {
       exitOnResourceError: true
     },
