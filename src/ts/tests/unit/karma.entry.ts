@@ -1,7 +1,10 @@
+// Import Polyfills
 import '../../polyfills';
 
 // Weird fix for 'cannot find name 'describe', 'expect' ' errors from typescript
 import {} from 'jasmine';
+import 'jasmine-ajax';
+// jasmine.Ajax = Ajax;
 // Unfortunately there's no typing for the `__karma__` variable. Just declare it as any.
 declare var __karma__: any;
 declare var require: any;

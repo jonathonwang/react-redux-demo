@@ -6,14 +6,6 @@ import { connect } from 'react-redux';
 import { UpdateCreateFieldAction } from '../actions/create-form.actions';
 import { HideAlertAction } from '../actions/alert.actions';
 
-// Async Action Imports
-import {
-  FetchTasks,
-  CreateTask,
-  DeleteTask,
-  ToggleTaskComplete
-} from '../api/task.api';
-
 // Component Imports
 import CreateFormComponent from '../components/create-form.component';
 import TaskListComponent from '../components/task-list.component';
@@ -23,6 +15,14 @@ import AlertComponent from '../components/alert.component';
 import { ITask } from '../reducers/task.reducer';
 import { ICreateFormState } from '../reducers/create-form.reducer';
 import { IAlertState } from '../reducers/alert.reducer';
+
+// Async Action Imports
+import {
+  FetchTasks,
+  CreateTask,
+  DeleteTask,
+  ToggleTaskComplete
+} from '../api/task.api';
 
 // App Component Props
 interface IAppComponentProps {

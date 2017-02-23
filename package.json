@@ -34,6 +34,7 @@
   "devDependencies": {
     "@types/enzyme": "^2.7.4",
     "@types/jasmine": "^2.5.41",
+    "@types/jasmine-ajax": "^3.1.32",
     "@types/redux-actions": "^1.2.2",
     "@types/whatwg-fetch": "0.0.33",
     "autoprefixer": "^6.5.3",
@@ -46,6 +47,7 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "fs": "0.0.1-security",
     "jasmine": "^2.5.3",
+    "jasmine-ajax": "^3.3.1",
     "jasmine-core": "^2.5.2",
     "jasmine-spec-reporter": "^3.2.0",
     "json-loader": "^0.5.4",
@@ -66,6 +68,7 @@
     "postcss-smart-import": "^0.6.8",
     "precss": "^1.4.0",
     "react-addons-test-utils": "^15.4.2",
+    "redux-mock-store": "^1.2.2",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "ts-loader": "^1.2.2",

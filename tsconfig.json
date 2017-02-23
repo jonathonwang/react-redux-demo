@@ -15,6 +15,7 @@
     ],
     "types": [
       "jasmine",
+      "jasmine-ajax",
       "whatwg-fetch"
     ]
   },
