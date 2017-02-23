@@ -6,4 +6,4 @@ before_script:
   - npm install -g karma
   - npm install -g karma-cli
 script:
-  - sudo karma start karma.conf.babel.js --browsers PhantomJS --single-run
+  - sudo ./node_modules/.bin/karma start karma.conf.babel.js --browsers PhantomJS --single-run
