@@ -2,4 +2,4 @@ language: node_js
 node_js:
   - "6"
   - "5"
-script: "sudo $(which npm) test:headless"
+script: "sudo $(which npm) run test:headless"
