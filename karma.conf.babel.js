@@ -24,17 +24,16 @@ module.exports = function (config) {
     mime: {
       'text/x-typescript': ['ts','tsx']
     },
-    // remapIstanbulReporter: {
-    //   reports: {
-    //     html: 'coverage',
-    //     lcovonly: './coverage/coverage.lcov'
-    //   }
-    // },
+    remapIstanbulReporter: {
+      reports: {
+        lcovonly: './coverage/coverage.lcov'
+      }
+    },
     reporters: [
       'spec',
-      'osx'
+      'osx',
       // 'progress'
-      // 'karma-remap-istanbul'
+      'karma-remap-istanbul'
     ],
     port: 9876,
     colors: true,
