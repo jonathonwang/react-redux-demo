@@ -2,4 +2,7 @@ language: node_js
 node_js:
   - "6"
   - "5"
-script: "sudo karma start karma.conf.babel.js --browsers PhantomJS --single-run"
+before_script:
+  - npm install -g karma
+script:
+  - sudo karma start karma.conf.babel.js --browsers PhantomJS --single-run
