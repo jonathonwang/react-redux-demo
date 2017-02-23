@@ -16,6 +16,7 @@ const middlewares = [ thunk ];
 const mockStore = configureStore(middlewares);
 
 describe('Async Task API Actions', () => {
+  // Begin FetchTasks Test
   describe('Fetch Tasks', () => {
     // Setup Mock Store
     let store;
@@ -68,4 +69,5 @@ describe('Async Task API Actions', () => {
       });
     });
   });
+  // End FetchTasks Test
 });

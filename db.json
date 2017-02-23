@@ -2,21 +2,6 @@
   "tasks": [
     {
       "title": "123",
-      "isComplete": true,
-      "id": 4
-    },
-    {
-      "title": "123",
-      "isComplete": false,
-      "id": 5
-    },
-    {
-      "title": "123",
-      "isComplete": false,
-      "id": 6
-    },
-    {
-      "title": "123",
       "isComplete": false,
       "id": 7
     },
