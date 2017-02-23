@@ -4,14 +4,20 @@
 module.exports = function (config) {
   config.set({
     basePath: '',
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine-ajax', 'jasmine'],
     plugins: [
       require('karma-jasmine'),
-      require('karma-chrome-launcher'),
-      require('karma-phantomjs-launcher'),
-      require('karma-remap-istanbul'),
+      require('karma-jasmine-ajax'),
       require('karma-webpack'),
       require('karma-sourcemap-loader'),
+      // Launchers
+      require('karma-chrome-launcher'),
+      require('karma-phantomjs-launcher'),
+      require('karma-firefox-launcher'),
+      require('karma-ie-launcher'),
+      require('karma-safari-launcher'),
+      // Spec Reporters
+      require('karma-remap-istanbul'),
       require('karma-spec-reporter'),
       require('karma-osx-reporter')
     ],
@@ -40,7 +46,7 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome', 'PhantomJS'],
+    browsers: ['PhantomJS'],
     singleRun: false,
     osxReporter: {
       notificationMode: 'failChange'

@@ -82,7 +82,7 @@ describe('Async Task API Actions', () => {
       });
     });
   });
-  // End FetchTasks Test
+  // End FetchTasks Method Test
 
   // CreateTask Method
   describe('CreateTask Method', () => {
@@ -301,7 +301,7 @@ describe('Async Task API Actions', () => {
     // Fail Response Test
     describe('On Failure', () => {
       it('Dispatch Correct ShowAlert Action', (done) => {
-        store.dispatch(ToggleTaskComplete({ task: mockedTask }))
+      store.dispatch(ToggleTaskComplete({ task: mockedTask }))
         .then(() => {
           const actions = store.getActions();
           const expectedActions = [
