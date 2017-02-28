@@ -21,7 +21,7 @@ import {
 } from '../actions/create-form.actions';
 
 // Interface Imports
-import { ITask } from '../reducers/task.reducer';
+import { ITask, Task } from '../reducers/task.reducer';
 import { ICreateFormState } from '../reducers/create-form.reducer';
 
 // Base Url Constant
@@ -32,11 +32,11 @@ const headers = new Headers();
 headers.set('Content-Type', 'application/json');
 
 // Helper for Checking Response OK
-const checkResponse = (response: Response) => {
+const checkResponse = (response) => {
   if (response.ok) {
     return response.json();
   }
-  throw new Error('Network response was not ok.');
+  throw new Error('Network response was not ok:' + response);
 };
 
 // GET Request to Fetch all tasks in DB
@@ -44,7 +44,10 @@ export const FetchTasks = () => {
   return (dispatch) => {
     return fetch(`${baseUrl}/tasks`, { method: 'GET' })
     .then((response) => checkResponse(response))
-    .then((response) => dispatch(InjectRetrievedTasks({ tasks: response })))
+    .then((response) => {
+      const tasks = response.map((task) => new Task(task));
+      dispatch(InjectRetrievedTasks({ tasks }));
+    })
     .catch((error) => dispatch(ShowAlert({ status: 'danger', message: 'Tasks Could Not be Loaded' })));
   };
 };
@@ -58,7 +61,8 @@ export const CreateTask = (taskData) => {
         return fetch(`${baseUrl}/tasks`, { method: 'POST', body: newTaskData, headers })
         .then((response) => checkResponse(response))
         .then((response) => {
-          dispatch(AddTask(response));
+          const task = new Task(response);
+          dispatch(AddTask(task));
           dispatch(ClearCreateForm());
           dispatch(ShowAlert({ status: 'success', message: 'Task Successfully Created' }));
         })
@@ -87,7 +91,7 @@ export const ToggleTaskIsComplete = (taskData) => {
   let toggleTaskData = JSON.parse(JSON.stringify(taskData)); // Shallow clone of Object to avoid reference to state Object
   toggleTaskData.task.isComplete = !toggleTaskData.task.isComplete;
   toggleTaskData = JSON.stringify(toggleTaskData.task);
-  return (dispatch, getState) => {
+  return (dispatch) => {
     return fetch(`${baseUrl}/tasks/${taskData.task.id}`, { method: 'PUT', body: toggleTaskData, headers })
     .then((response) => checkResponse(response))
     .then((response) => dispatch(ToggleTaskComplete({ id: taskData.task.id })))

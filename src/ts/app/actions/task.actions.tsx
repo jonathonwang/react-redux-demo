@@ -1,5 +1,7 @@
 import { Action, createAction } from 'redux-actions';
 
+import { ITask, Task } from '../reducers/task.reducer';
+
 export const ActionTypes = {
   INJECT_TASKS: '[Tasks] Inject Retrieved Tasks',
   ADD_TASK: '[Tasks] Add Task',

@@ -9,6 +9,8 @@ import {
   ToggleTaskIsComplete
 } from '../../../app/api/task.api';
 
+import { Task } from '../../../app/reducers/task.reducer';
+
 import { ActionTypes as TaskActionTypes } from '../../../app/actions/task.actions';
 import { ActionTypes as AlertActionTypes } from '../../../app/actions/alert.actions';
 import { ActionTypes as FormActionTypes } from '../../../app/actions/create-form.actions';
@@ -22,7 +24,7 @@ describe('Async Task API Actions', () => {
     // Setup Mock Store
     let store;
     // Setup Mock Responses for Success and Fail
-    const mockedTask = {title: '123', isComplete: true, id: 4};
+    const mockedTask = new Task({title: '123', isComplete: true, id: 4});
     const testResponse = {
       success: { status: 200, responseText: JSON.stringify([mockedTask]) },
       failure: { status: 404 }
@@ -127,7 +129,7 @@ describe('Async Task API Actions', () => {
         .then(() => {
           const actions = store.getActions();
           const expectedActions = [
-            { type: TaskActionTypes.ADD_TASK, payload: mockedResponseTask },
+            { type: TaskActionTypes.ADD_TASK, payload: new Task(mockedResponseTask) },
             { type: FormActionTypes.CLEAR_CREATE_FORM },
             { type: AlertActionTypes.SHOW_ALERT, payload: { status: 'success', message: 'Task Successfully Created' } }
           ];

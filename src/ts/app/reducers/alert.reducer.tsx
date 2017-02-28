@@ -13,15 +13,25 @@ export const initialState: IAlertState = {
   visible: false
  };
 
+export interface IAlertPayload {
+  status: string;
+  message: string;
+}
+
+/**
+ * [Alert Reducer]
+ * @type {[handleActions<State>({}, initialState)]}
+ * @return {[State]}
+ */
 export const alertReducer = handleActions<IAlertState>({
-  [ActionTypes.SHOW_ALERT]: (state: any, action: Action<any>): any => {
+  [ActionTypes.SHOW_ALERT]: (state: any, action: Action<IAlertPayload>): IAlertState => {
     return {
       status: action.payload.status,
       message: action.payload.message,
       visible: true
     };
   },
-  [ActionTypes.HIDE_ALERT]: (state: any, action: Action<any>): any => {
+  [ActionTypes.HIDE_ALERT]: (state: any, action: Action<void>): IAlertState => {
     return {
       status: state.status,
       message: state.message,

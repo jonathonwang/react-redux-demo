@@ -7,22 +7,38 @@ export interface ITask {
   isComplete: boolean;
 }
 
+export class Task implements ITask {
+  id: number;
+  title: string;
+  isComplete: boolean;
+  constructor(taskData: { id: number, title: string, isComplete: boolean}) {
+    this.id = taskData.id;
+    this.title = taskData.title;
+    this.isComplete = taskData.isComplete;
+  }
+}
+
 export const initialState: Array<ITask> = [];
 
-export const taskReducer = handleActions<Array<{}>>({
-  [ActionTypes.INJECT_TASKS]: (state: any, action: Action<any>): any => {
+/**
+ * Reducer for Task Array
+ * @type {[handleActions<State>]}
+ * @return {[State]}
+ */
+export const taskReducer = handleActions<Array<ITask>>({
+  [ActionTypes.INJECT_TASKS]: (state: Array<ITask>, action: Action<{ tasks: Array<ITask> }>): Array<ITask> => {
     return [...state, ...action.payload.tasks];
   },
-  [ActionTypes.ADD_TASK]: (state: any, action: Action<any>): any => {
+  [ActionTypes.ADD_TASK]: (state: Array<ITask>, action: Action<ITask>): Array<ITask> => {
     return [...state, action.payload];
   },
-  [ActionTypes.REMOVE_TASK]: (state: any, action: Action<any>): any => {
+  [ActionTypes.REMOVE_TASK]: (state: Array<ITask>, action: Action<{ id: number }>): Array<ITask> => {
     return state.filter((task) => task.id !== action.payload.id);
   },
-  [ActionTypes.TOGGLE_TASK]: (state: any, action: Action<any>): any => {
+  [ActionTypes.TOGGLE_TASK]: (state: Array<ITask>, action: Action<{ id: number }>): Array<ITask> => {
     return state.map((task) => {
       if (task.id === action.payload.id) {
-        return Object.assign({}, task, { isComplete: !task.isComplete });
+        return new Task({ id: task.id, title: task.title, isComplete: !task.isComplete });
       } else {
         return task;
       }

@@ -5,9 +5,8 @@ export const ActionTypes = {
   CLEAR_CREATE_FORM: '[CreateForm] Clear Create Form Fields'
 };
 
-export const UpdateCreateField = createAction<any, { title: string }>(
-  ActionTypes.UPDATE_CREATE_FORM_FIELD,
-  (payload): { title: string } => payload
+export const UpdateCreateField = createAction<any>(
+  ActionTypes.UPDATE_CREATE_FORM_FIELD
 );
 export const ClearCreateForm = createAction<any>(
   ActionTypes.CLEAR_CREATE_FORM

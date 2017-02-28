@@ -2,7 +2,7 @@ import webpack from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import WebpackNotifierPlugin from 'webpack-notifier';
 
-export default {
+export const devConfig = {
   entry: './src/ts/app/index.tsx',
   output: {
     path: `${__dirname}/dist`,
@@ -30,3 +30,5 @@ export default {
     new ExtractTextPlugin('css/app.css', {allChunks: true}),
   ]
 };
+
+export default devConfig;
