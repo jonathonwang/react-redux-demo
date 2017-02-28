@@ -3,8 +3,8 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
 // Sync Action Imports
-import { UpdateCreateFieldAction } from '../actions/create-form.actions';
-import { HideAlertAction } from '../actions/alert.actions';
+import { UpdateCreateField } from '../actions/create-form.actions';
+import { HideAlert } from '../actions/alert.actions';
 
 // Component Imports
 import CreateFormComponent from '../components/create-form.component';
@@ -21,7 +21,7 @@ import {
   FetchTasks,
   CreateTask,
   DeleteTask,
-  ToggleTaskComplete
+  ToggleTaskIsComplete
 } from '../api/task.api';
 
 // App Component Props
@@ -52,7 +52,7 @@ export class AppComponent extends React.Component<IAppComponentProps, void> {
         task={task}
         key={task.id}
         deleteTask={(id) => dispatch(DeleteTask({ id }))}
-        toggleComplete={(task) => dispatch(ToggleTaskComplete({ task }))}
+        toggleComplete={(task) => dispatch(ToggleTaskIsComplete({ task }))}
       />
     ));
 
@@ -60,7 +60,7 @@ export class AppComponent extends React.Component<IAppComponentProps, void> {
       <div className='container mt50'>
         <div className='row'>
           <div className='col-xs-12'>
-            <AlertComponent alert={alert} closeAlert={() => dispatch(HideAlertAction())}/>
+            <AlertComponent alert={alert} closeAlert={() => dispatch(HideAlert())}/>
           </div>
         </div>
         <div className='row'>
@@ -73,7 +73,7 @@ export class AppComponent extends React.Component<IAppComponentProps, void> {
             <ul className='list-group'>
               <CreateFormComponent
                 createForm={createForm}
-                handleInputUpdate={(title) => dispatch(UpdateCreateFieldAction({ title }))}
+                handleInputUpdate={(title) => dispatch(UpdateCreateField({ title }))}
                 handleSubmitForm={() => dispatch(CreateTask(createForm))}
               />
               {taskList}

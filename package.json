@@ -9,6 +9,7 @@
     "webpack-prod": "webpack --config webpack.production-config.babel.js",
     "test": "karma start karma.conf.babel.js",
     "test:headless": "karma start karma.conf.babel.js --browsers PhantomJS",
+    "test:headless-single": "karma start karma.conf.babel.js --browsers PhantomJS --single-run",
     "json-server": "json-server --watch db.json"
   },
   "author": "",

@@ -1,26 +1,28 @@
 import { createAction, Action } from 'redux-actions';
+import { Dispatch } from 'react-redux';
 
 // Task Action Imports
 import {
-  InjectRetrievedTodos,
-  AddTodoAction,
-  DeleteTodoAction,
-  ToggleTodoCompleteAction
+  InjectRetrievedTasks,
+  AddTask,
+  RemoveTask,
+  ToggleTaskComplete
 } from '../actions/task.actions';
 
 // Alert Action Imports
 import {
-  ShowAlertAction,
-  HideAlertAction
+  ShowAlert,
+  HideAlert
 } from '../actions/alert.actions';
 
 // Create Form Action Imports
 import {
-  ClearCreateFormAction
+  ClearCreateForm
 } from '../actions/create-form.actions';
 
 // Interface Imports
 import { ITask } from '../reducers/task.reducer';
+import { ICreateFormState } from '../reducers/create-form.reducer';
 
 // Base Url Constant
 const baseUrl = 'http://localhost:3000';
@@ -42,8 +44,8 @@ export const FetchTasks = () => {
   return (dispatch) => {
     return fetch(`${baseUrl}/tasks`, { method: 'GET' })
     .then((response) => checkResponse(response))
-    .then((response) => dispatch(InjectRetrievedTodos({ tasks: response })))
-    .catch((error) => dispatch(ShowAlertAction({ status: 'danger', message: 'Tasks Could Not be Loaded' })));
+    .then((response) => dispatch(InjectRetrievedTasks({ tasks: response })))
+    .catch((error) => dispatch(ShowAlert({ status: 'danger', message: 'Tasks Could Not be Loaded' })));
   };
 };
 
@@ -56,13 +58,13 @@ export const CreateTask = (taskData) => {
         return fetch(`${baseUrl}/tasks`, { method: 'POST', body: newTaskData, headers })
         .then((response) => checkResponse(response))
         .then((response) => {
-          dispatch(AddTodoAction(response));
-          dispatch(ClearCreateFormAction());
-          dispatch(ShowAlertAction({ status: 'success', message: 'Task Successfully Created' }));
+          dispatch(AddTask(response));
+          dispatch(ClearCreateForm());
+          dispatch(ShowAlert({ status: 'success', message: 'Task Successfully Created' }));
         })
-        .catch((error) => dispatch(ShowAlertAction({ status: 'danger', message: 'Task Could Not Be Created' })));
+        .catch((error) => dispatch(ShowAlert({ status: 'danger', message: 'Task Could Not Be Created' })));
       } else {
-        dispatch(ShowAlertAction({ status: 'danger', message: 'Task Title is Required' }));
+        dispatch(ShowAlert({ status: 'danger', message: 'Task Title is Required' }));
       }
   };
 };
@@ -73,23 +75,23 @@ export const DeleteTask = (taskData) => {
     return fetch(`${baseUrl}/tasks/${taskData.id}`, { method: 'DELETE' })
     .then((response) => checkResponse(response))
     .then((response) => {
-      dispatch(DeleteTodoAction({ id: taskData.id }));
-      dispatch(ShowAlertAction({ status: 'info', message: 'Task Successfully Deleted' }));
+      dispatch(RemoveTask({ id: taskData.id }));
+      dispatch(ShowAlert({ status: 'info', message: 'Task Successfully Deleted' }));
     })
-    .catch((error) => dispatch(ShowAlertAction({ status: 'danger', message: 'Task Could Not Be Deleted' })));
+    .catch((error) => dispatch(ShowAlert({ status: 'danger', message: 'Task Could Not Be Deleted' })));
   };
 };
 
 // PUT Request to toggle Task isComplete
-export const ToggleTaskComplete = (taskData) => {
+export const ToggleTaskIsComplete = (taskData) => {
   let toggleTaskData = JSON.parse(JSON.stringify(taskData)); // Shallow clone of Object to avoid reference to state Object
   toggleTaskData.task.isComplete = !toggleTaskData.task.isComplete;
   toggleTaskData = JSON.stringify(toggleTaskData.task);
   return (dispatch, getState) => {
     return fetch(`${baseUrl}/tasks/${taskData.task.id}`, { method: 'PUT', body: toggleTaskData, headers })
     .then((response) => checkResponse(response))
-    .then((response) => dispatch(ToggleTodoCompleteAction({ id: taskData.task.id })))
-    .catch((error) => dispatch(ShowAlertAction({ status: 'danger', message: 'Task Could Not Be Toggled Complete' })));
+    .then((response) => dispatch(ToggleTaskComplete({ id: taskData.task.id })))
+    .catch((error) => dispatch(ShowAlert({ status: 'danger', message: 'Task Status Could Not Be Toggled' })));
   };
 };
 

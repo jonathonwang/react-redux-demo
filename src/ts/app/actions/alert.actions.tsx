@@ -5,9 +5,9 @@ export const ActionTypes = {
   HIDE_ALERT: '[Alert] Hide Alert'
 };
 
-export const ShowAlertAction = createAction<any>(
+export const ShowAlert = createAction<any>(
   ActionTypes.SHOW_ALERT
 );
-export const HideAlertAction = createAction<any>(
+export const HideAlert = createAction<any>(
   ActionTypes.HIDE_ALERT
 );

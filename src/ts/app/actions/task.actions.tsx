@@ -1,21 +1,21 @@
 import { Action, createAction } from 'redux-actions';
 
 export const ActionTypes = {
-  INJECT_TODOS: '[Tasks] Inject Retrieved Todos',
-  ADD_TODO: '[Tasks] Add Todo',
-  DELETE_TODO: '[Tasks] Delete Todo',
-  TOGGLE_TODO: '[Tasks] Toggle Todo Complete'
+  INJECT_TASKS: '[Tasks] Inject Retrieved Tasks',
+  ADD_TASK: '[Tasks] Add Task',
+  REMOVE_TASK: '[Tasks] Delete Task',
+  TOGGLE_TASK: '[Tasks] Toggle Task Complete'
 };
 
-export const InjectRetrievedTodos = createAction<any>(
-  ActionTypes.INJECT_TODOS
+export const InjectRetrievedTasks = createAction<any>(
+  ActionTypes.INJECT_TASKS
 );
-export const AddTodoAction = createAction<any>(
-  ActionTypes.ADD_TODO
+export const AddTask = createAction<any>(
+  ActionTypes.ADD_TASK
 );
-export const DeleteTodoAction = createAction<any>(
-  ActionTypes.DELETE_TODO
+export const RemoveTask = createAction<any>(
+  ActionTypes.REMOVE_TASK
 );
-export const ToggleTodoCompleteAction = createAction<any>(
-  ActionTypes.TOGGLE_TODO
+export const ToggleTaskComplete = createAction<any>(
+  ActionTypes.TOGGLE_TASK
 );

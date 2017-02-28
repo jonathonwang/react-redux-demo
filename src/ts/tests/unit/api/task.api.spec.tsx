@@ -6,7 +6,7 @@ import {
   FetchTasks,
   CreateTask,
   DeleteTask,
-  ToggleTaskComplete
+  ToggleTaskIsComplete
 } from '../../../app/api/task.api';
 
 import { ActionTypes as TaskActionTypes } from '../../../app/actions/task.actions';
@@ -58,7 +58,7 @@ describe('Async Task API Actions', () => {
         .then(() => {
           const actions = store.getActions();
           expect(actions.length).toEqual(1);
-          expect(actions[0].type).toEqual(TaskActionTypes.INJECT_TODOS);
+          expect(actions[0].type).toEqual(TaskActionTypes.INJECT_TASKS);
           expect(actions[0].payload).toEqual({ tasks: [mockedTask] });
           done();
         });
@@ -127,7 +127,7 @@ describe('Async Task API Actions', () => {
         .then(() => {
           const actions = store.getActions();
           const expectedActions = [
-            { type: TaskActionTypes.ADD_TODO, payload: mockedResponseTask },
+            { type: TaskActionTypes.ADD_TASK, payload: mockedResponseTask },
             { type: FormActionTypes.CLEAR_CREATE_FORM },
             { type: AlertActionTypes.SHOW_ALERT, payload: { status: 'success', message: 'Task Successfully Created' } }
           ];
@@ -215,7 +215,7 @@ describe('Async Task API Actions', () => {
         .then(() => {
           const actions = store.getActions();
           const expectedActions = [
-            { type: TaskActionTypes.DELETE_TODO, payload: { id: 10 } },
+            { type: TaskActionTypes.REMOVE_TASK, payload: { id: 10 } },
             { type: AlertActionTypes.SHOW_ALERT, payload: { status: 'info', message: 'Task Successfully Deleted' } }
           ];
           expect(actions.length).toEqual(2);
@@ -270,7 +270,7 @@ describe('Async Task API Actions', () => {
 
     // General Tests
     it('Sends PUT Request with Correct JSON', (done) => {
-      store.dispatch(ToggleTaskComplete({ task: mockedTask }))
+      store.dispatch(ToggleTaskIsComplete({ task: mockedTask }))
       .then(() => {
         expect(request.method).toEqual('PUT');
         const mockedToggledTask = Object.assign({}, mockedTask, { isComplete: !mockedTask.isComplete });
@@ -284,11 +284,11 @@ describe('Async Task API Actions', () => {
     // Success Response Test
     describe('On Success', () => {
       it('Dispatch Correct ToggleTodoComplete Action', (done) => {
-        store.dispatch(ToggleTaskComplete({ task: mockedTask }))
+        store.dispatch(ToggleTaskIsComplete({ task: mockedTask }))
         .then(() => {
           const actions = store.getActions();
           const expectedActions = [
-            { type: TaskActionTypes.TOGGLE_TODO, payload: { id: 10 } }
+            { type: TaskActionTypes.TOGGLE_TASK, payload: { id: 10 } }
           ];
           expect(actions.length).toEqual(1);
           expect(actions).toEqual(expectedActions);
@@ -301,11 +301,11 @@ describe('Async Task API Actions', () => {
     // Fail Response Test
     describe('On Failure', () => {
       it('Dispatch Correct ShowAlert Action', (done) => {
-      store.dispatch(ToggleTaskComplete({ task: mockedTask }))
+      store.dispatch(ToggleTaskIsComplete({ task: mockedTask }))
         .then(() => {
           const actions = store.getActions();
           const expectedActions = [
-            { type: AlertActionTypes.SHOW_ALERT, payload: { status: 'danger', message: 'Task Could Not Be Toggled Complete' } }
+            { type: AlertActionTypes.SHOW_ALERT, payload: { status: 'danger', message: 'Task Status Could Not Be Toggled' } }
           ];
           expect(actions.length).toEqual(1);
           expect(actions).toEqual(expectedActions);
