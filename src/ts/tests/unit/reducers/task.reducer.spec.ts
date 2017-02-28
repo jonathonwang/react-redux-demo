@@ -16,7 +16,7 @@ import {
 
 describe('Task Reducer', () => {
   it('Should Return State with Tasks Injected', () => {
-    const injectableTasks: Array<ITask> = [
+    const injectableTasks: Array<Task> = [
       new Task({ id: 1, title: '123', isComplete: false  }),
       new Task({ id: 2, title: '123', isComplete: false  })
     ];

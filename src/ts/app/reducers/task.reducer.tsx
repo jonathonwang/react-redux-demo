@@ -11,7 +11,7 @@ export class Task implements ITask {
   id: number;
   title: string;
   isComplete: boolean;
-  constructor(taskData: { id: number, title: string, isComplete: boolean}) {
+  constructor(taskData: ITask) {
     this.id = taskData.id;
     this.title = taskData.title;
     this.isComplete = taskData.isComplete;
@@ -25,7 +25,7 @@ export const initialState: Array<ITask> = [];
  * @type {[handleActions<State>]}
  * @return {[State]}
  */
-export const taskReducer = handleActions<Array<ITask>>({
+export const taskReducer = handleActions<Array<Task>>({
   [ActionTypes.INJECT_TASKS]: (state: Array<ITask>, action: Action<{ tasks: Array<ITask> }>): Array<ITask> => {
     return [...state, ...action.payload.tasks];
   },

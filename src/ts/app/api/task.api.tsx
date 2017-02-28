@@ -16,12 +16,14 @@ import {
 } from '../actions/alert.actions';
 
 // Create Form Action Imports
-import {
-  ClearCreateForm
-} from '../actions/create-form.actions';
+import { ClearCreateForm } from '../actions/create-form.actions';
 
 // Interface Imports
-import { ITask, Task } from '../reducers/task.reducer';
+import {
+  ITask,
+  Task
+} from '../reducers/task.reducer';
+
 import { ICreateFormState } from '../reducers/create-form.reducer';
 
 // Base Url Constant
@@ -45,7 +47,7 @@ export const FetchTasks = () => {
     return fetch(`${baseUrl}/tasks`, { method: 'GET' })
     .then((response) => checkResponse(response))
     .then((response) => {
-      const tasks = response.map((task) => new Task(task));
+      const tasks: Array<Task> = response.map((task) => new Task(task));
       dispatch(InjectRetrievedTasks({ tasks }));
     })
     .catch((error) => dispatch(ShowAlert({ status: 'danger', message: 'Tasks Could Not be Loaded' })));
