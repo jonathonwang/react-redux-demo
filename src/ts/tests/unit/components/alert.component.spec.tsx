@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 
-import AlertComponent from '../../../app/components/alert.component';
+import { AlertComponent } from '../../../app/components/alert.component';
 
 describe('Alert Component', () => {
   let wrapper;
-  const closeMethod = jasmine.createSpy('closeMethod');
+  const dispatch = jasmine.createSpy('dispatch');
   beforeEach(() => {
-    closeMethod.calls.reset();
+    dispatch.calls.reset();
     const alert = { status: '', message: '', visible: false };
     wrapper = shallow(
-      <AlertComponent alert={alert} closeAlert={() => closeMethod()}/>
+      <AlertComponent alert={alert} dispatch={dispatch}/>
     );
   });
   it('Should Render Correctly', () => {
@@ -37,7 +37,7 @@ describe('Alert Component', () => {
   it('Should Run closeAlert Method', () => {
     const closeBtn = wrapper.find('.close');
     closeBtn.simulate('click', { preventDefault() {} });
-    expect(closeMethod).toHaveBeenCalled();
-    expect(closeMethod.calls.count()).toEqual(1);
+    expect(dispatch).toHaveBeenCalled();
+    expect(dispatch.calls.count()).toEqual(1);
   });
 });

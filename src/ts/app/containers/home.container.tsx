@@ -1,20 +1,9 @@
 import * as React from 'react';
-import { Dispatch } from 'redux';
-import { connect } from 'react-redux';
+import { connect, Dispatch } from 'react-redux';
 
 // Sync Action Imports
 import { UpdateCreateField } from '../actions/create-form.actions';
 import { HideAlert } from '../actions/alert.actions';
-
-// Component Imports
-import CreateFormComponent from '../components/create-form.component';
-import TaskListComponent from '../components/task-list.component';
-import AlertComponent from '../components/alert.component';
-
-// Interface Imports
-import { ITask, Task } from '../reducers/task.reducer';
-import { ICreateFormState } from '../reducers/create-form.reducer';
-import { IAlertState } from '../reducers/alert.reducer';
 
 // Async Action Imports
 import {
@@ -24,28 +13,31 @@ import {
   ToggleTaskIsComplete
 } from '../api/task.api';
 
+// Component Imports
+import CreateFormComponent from '../components/create-form.component';
+import TaskListComponent from '../components/task-list.component';
+
+// Interface Imports
+import { ITask, Task } from '../reducers/task.reducer';
+import { ICreateFormState } from '../reducers/create-form.reducer';
+
 // App Component Props
-interface IAppComponentProps {
+interface IHomeComponentProps {
   tasks: Array<ITask>;
   createForm: ICreateFormState;
-  alert: IAlertState;
   dispatch: Dispatch<Object>;
 }
 
 // App Component State
-interface IAppComponentState {
+interface IHomeComponentState {
   dispatch: Dispatch<any>;
   componentDidMount(): void;
   render(): JSX.Element;
 }
 
-export class AppComponent extends React.Component<IAppComponentProps, void> {
-  private componentDidMount(): void {
-    const { dispatch } = this.props;
-    dispatch(FetchTasks());
-  }
+export class HomeComponent extends React.Component<IHomeComponentProps, IHomeComponentState> {
   render(): JSX.Element {
-    const { tasks, createForm, alert, dispatch } = this.props;
+    const { tasks, createForm, dispatch } = this.props;
 
     const taskList: Array<JSX.Element> = tasks.map((task): JSX.Element => (
       <TaskListComponent
@@ -57,15 +49,7 @@ export class AppComponent extends React.Component<IAppComponentProps, void> {
     ));
 
     return (
-      <div className='container mt50'>
-        <div className='row'>
-          <div className='col-xs-12'>
-            <AlertComponent
-              alert={alert}
-              closeAlert={() => dispatch(HideAlert())}
-            />
-          </div>
-        </div>
+      <div>
         <div className='row'>
           <div className='col-xs-12'>
             <h1 className='text-center'>Task App</h1>
@@ -88,12 +72,12 @@ export class AppComponent extends React.Component<IAppComponentProps, void> {
   }
 }
 
+
 const mapStateToProps = (state) => ({
   tasks: state.tasks,
-  createForm: state.createForm,
-  alert: state.alert
+  createForm: state.createForm
 });
 
-const App = connect(mapStateToProps)(AppComponent);
+const Home = connect(mapStateToProps)(HomeComponent);
 
-export default App;
+export default Home;

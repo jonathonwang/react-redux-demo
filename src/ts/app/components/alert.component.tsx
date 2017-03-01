@@ -1,5 +1,8 @@
 import * as React from 'react';
+import { connect, Dispatch } from 'react-redux';
 import classNames from 'classnames';
+
+import { HideAlert } from '../actions/alert.actions';
 
 import { IAlertState } from '../reducers/alert.reducer';
 
@@ -10,7 +13,7 @@ interface IAlertComponent {
 
 interface IAlertComponentProps {
   alert: IAlertState;
-  closeAlert(): void;
+  dispatch: Dispatch<Object>;
 }
 
 interface IAlertComponentState {
@@ -20,7 +23,7 @@ interface IAlertComponentState {
 export class AlertComponent extends React.Component<IAlertComponentProps, IAlertComponentState> implements IAlertComponent {
   closeAlert(event: any): void {
     event.preventDefault();
-    this.props.closeAlert();
+    this.props.dispatch(HideAlert());
   }
   render(): JSX.Element {
     const { alert } = this.props;
@@ -34,4 +37,10 @@ export class AlertComponent extends React.Component<IAlertComponentProps, IAlert
   }
 }
 
-export default AlertComponent;
+const mapStateToProps = (state) => ({
+  alert: state.alert
+});
+
+const Alert = connect(mapStateToProps)(AlertComponent);
+
+export default Alert;
