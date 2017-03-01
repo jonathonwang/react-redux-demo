@@ -12,6 +12,9 @@ export const devConfig = {
   resolve: {
     extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js']
   },
+  devServer: {
+    historyApiFallback: true
+  },
   module: {
     loaders: [
       {
