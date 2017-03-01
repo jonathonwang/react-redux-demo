@@ -12,7 +12,7 @@ import TaskListComponent from '../components/task-list.component';
 import AlertComponent from '../components/alert.component';
 
 // Interface Imports
-import { ITask } from '../reducers/task.reducer';
+import { ITask, Task } from '../reducers/task.reducer';
 import { ICreateFormState } from '../reducers/create-form.reducer';
 import { IAlertState } from '../reducers/alert.reducer';
 
@@ -51,8 +51,8 @@ export class AppComponent extends React.Component<IAppComponentProps, void> {
       <TaskListComponent
         task={task}
         key={task.id}
-        deleteTask={(id) => dispatch(DeleteTask({ id }))}
-        toggleComplete={(task) => dispatch(ToggleTaskIsComplete({ task }))}
+        deleteTask={(id: number) => dispatch(DeleteTask({ id }))}
+        toggleComplete={(task: Task) => dispatch(ToggleTaskIsComplete({ task }))}
       />
     ));
 
@@ -60,7 +60,10 @@ export class AppComponent extends React.Component<IAppComponentProps, void> {
       <div className='container mt50'>
         <div className='row'>
           <div className='col-xs-12'>
-            <AlertComponent alert={alert} closeAlert={() => dispatch(HideAlert())}/>
+            <AlertComponent
+              alert={alert}
+              closeAlert={() => dispatch(HideAlert())}
+            />
           </div>
         </div>
         <div className='row'>

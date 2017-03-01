@@ -129,7 +129,7 @@ describe('Async Task API Actions', () => {
         .then(() => {
           const actions = store.getActions();
           const expectedActions = [
-            { type: TaskActionTypes.ADD_TASK, payload: new Task(mockedResponseTask) },
+            { type: TaskActionTypes.ADD_TASK, payload: { task: new Task(mockedResponseTask) }},
             { type: FormActionTypes.CLEAR_CREATE_FORM },
             { type: AlertActionTypes.SHOW_ALERT, payload: { status: 'success', message: 'Task Successfully Created' } }
           ];

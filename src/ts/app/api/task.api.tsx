@@ -18,7 +18,7 @@ import {
 // Create Form Action Imports
 import { ClearCreateForm } from '../actions/create-form.actions';
 
-// Interface Imports
+// Interface / Class Imports
 import {
   ITask,
   Task
@@ -33,7 +33,11 @@ const baseUrl = 'http://localhost:3000';
 const headers = new Headers();
 headers.set('Content-Type', 'application/json');
 
-// Helper for Checking Response OK
+/**
+ * checkResponse Helper to be used for AJAX Promises
+ * @param  {[Response]} response [Response from API]
+ * @return {[Response]}
+ */
 const checkResponse = (response) => {
   if (response.ok) {
     return response.json();
@@ -41,7 +45,10 @@ const checkResponse = (response) => {
   throw new Error('Network response was not ok:' + response);
 };
 
-// GET Request to Fetch all tasks in DB
+/**
+ * Async FetchTasks
+ * GET Request to retrieve tasks from API
+ */
 export const FetchTasks = () => {
   return (dispatch) => {
     return fetch(`${baseUrl}/tasks`, { method: 'GET' })
@@ -54,9 +61,13 @@ export const FetchTasks = () => {
   };
 };
 
-// POST Request to Create new Task
-// Also checks length of title before sending Request
-export const CreateTask = (taskData) => {
+/**
+ * Async CreateTask
+ * POST Request to Create New Task
+ * Also checks length of title before sending Request
+ * @param {[Object]} taskData
+ */
+export const CreateTask = (taskData: { title: string, isComplete: boolean }) => {
   const newTaskData = JSON.stringify(taskData);
     return (dispatch) => {
       if (taskData.title) {
@@ -64,7 +75,7 @@ export const CreateTask = (taskData) => {
         .then((response) => checkResponse(response))
         .then((response) => {
           const task = new Task(response);
-          dispatch(AddTask(task));
+          dispatch(AddTask({ task }));
           dispatch(ClearCreateForm());
           dispatch(ShowAlert({ status: 'success', message: 'Task Successfully Created' }));
         })
@@ -75,8 +86,12 @@ export const CreateTask = (taskData) => {
   };
 };
 
-// DELETE Request to delete Task
-export const DeleteTask = (taskData) => {
+/**
+ * Async Delete Task
+ * DELETE Request to Delete Task
+ * @param {[Object]} taskData [{ id: number }]
+ */
+export const DeleteTask = (taskData: { id: number }) => {
   return (dispatch) => {
     return fetch(`${baseUrl}/tasks/${taskData.id}`, { method: 'DELETE' })
     .then((response) => checkResponse(response))
@@ -88,8 +103,12 @@ export const DeleteTask = (taskData) => {
   };
 };
 
-// PUT Request to toggle Task isComplete
-export const ToggleTaskIsComplete = (taskData) => {
+/**
+ * Async ToggleTaskIsComplete
+ * PUT Request to toggle Task isComplete
+ * @param {[Object]} taskData
+ */
+export const ToggleTaskIsComplete = (taskData: { task: Task }) => {
   let toggleTaskData = JSON.parse(JSON.stringify(taskData)); // Shallow clone of Object to avoid reference to state Object
   toggleTaskData.task.isComplete = !toggleTaskData.task.isComplete;
   toggleTaskData = JSON.stringify(toggleTaskData.task);

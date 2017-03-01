@@ -26,7 +26,7 @@ describe('Task Reducer', () => {
   });
   it('Should Return State with Task Added', () => {
     const addedTask = new Task({ id: 1, title: '123', isComplete: false  });
-    const actual = taskReducer(initialState, AddTask(addedTask));
+    const actual = taskReducer(initialState, AddTask({ task: addedTask}));
     const expected = [addedTask];
     expect(actual).toEqual(expected);
   });
@@ -51,7 +51,7 @@ describe('Task Reducer', () => {
   });
   it('Should Add Task, Toggle Task, and Delete Task in Sequence', () => {
     const addedTask = new Task({ id: 1, title: '123123', isComplete: false });
-    const stateWithTask = taskReducer(initialState, AddTask(addedTask));
+    const stateWithTask = taskReducer(initialState, AddTask({ task: addedTask }));
     const expectedStateWithTask = [addedTask];
     expect(stateWithTask).toEqual(expectedStateWithTask);
     const toggledTaskState = taskReducer(stateWithTask, ToggleTaskComplete({ id: 1 }));

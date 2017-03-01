@@ -29,8 +29,8 @@ export const taskReducer = handleActions<Array<Task>>({
   [ActionTypes.INJECT_TASKS]: (state: Array<ITask>, action: Action<{ tasks: Array<ITask> }>): Array<ITask> => {
     return [...state, ...action.payload.tasks];
   },
-  [ActionTypes.ADD_TASK]: (state: Array<ITask>, action: Action<ITask>): Array<ITask> => {
-    return [...state, action.payload];
+  [ActionTypes.ADD_TASK]: (state: Array<ITask>, action: Action<{ task: ITask }>): Array<ITask> => {
+    return [...state, action.payload.task];
   },
   [ActionTypes.REMOVE_TASK]: (state: Array<ITask>, action: Action<{ id: number }>): Array<ITask> => {
     return state.filter((task) => task.id !== action.payload.id);
