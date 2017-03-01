@@ -11,21 +11,29 @@ import { Router, Route, browserHistory } from 'react-router';
 // Store Import
 import { store } from './reducers/index';
 
+// Router Map Import
+import RouterMap from './routes/index.routes';
+
 // Component Import
 import AppComponent from './containers/app.container';
-import HomeComponent from './containers/home.container';
-import TestComponent from './containers/test.container';
 
 // History
 const history = syncHistoryWithStore(browserHistory, store);
 
+const routes = RouterMap.map((route) => (
+  <Route path={route.path} component={route.component} key={route.path}/>
+));
+
 render(
   <Provider store={store}>
     <Router history={history}>
+      {/* Main Layout Component */}
       <Route component={AppComponent}>
-        <Route path='/' component={HomeComponent}/>
-        <Route path='/test' component={TestComponent}/>
+        {/* Routes */}
+        {routes}
+        {/* Routes */}
       </Route>
+      {/* Main Layout Component */}
     </Router>
   </Provider>,
   document.getElementById('root')
