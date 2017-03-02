@@ -33,20 +33,10 @@ describe('Task List Component', () => {
     const toggleBtn = wrapper.find('.btn-primary');
     expect(toggleBtn).toBeDefined();
   });
-  it('Should Display Task Id', () => {
-    const taskId = wrapper.find('#task-id').text();
-    expect(taskId).toBeDefined();
-    expect(taskId).toEqual('id: 1');
-  });
   it('Should Display Task Title', () => {
     const taskTitle = wrapper.find('#task-title').text();
     expect(taskTitle).toBeDefined();
-    expect(taskTitle).toEqual('title: 123123');
-  });
-  it('Should Display Task isComplete', () => {
-    const taskIsComplete = wrapper.find('#task-status').text();
-    expect(taskIsComplete).toBeDefined();
-    expect(taskIsComplete).toEqual('isComplete: false');
+    expect(taskTitle).toEqual('123123');
   });
   it('Click on Delete Button Should Run Delete Function', () => {
     const deleteBtn = wrapper.find('.btn-danger');
@@ -55,7 +45,7 @@ describe('Task List Component', () => {
     expect(deleteMethod).toHaveBeenCalled();
   });
   it('Click on Toggle Button Should Run Toggle Function', () => {
-    const toggleBtn = wrapper.find('.btn-primary');
+    const toggleBtn = wrapper.find('#task-togglebtn');
     toggleBtn.simulate('click');
     expect(toggleMethod.calls.count()).toEqual(1);
   });

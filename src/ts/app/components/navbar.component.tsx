@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { connect, Dispatch } from 'react-redux';
+import { Link } from 'react-router';
 
 // Component Imports
 import NavLink from './navlink.component';
 
 export interface NavbarComponentProps {
-  // currentRoute: any;
-  // dispatch: Dispatch<Object>;
 }
 
 export class NavbarComponent extends React.Component<NavbarComponentProps, void> {
@@ -15,16 +14,15 @@ export class NavbarComponent extends React.Component<NavbarComponentProps, void>
       <nav className='navbar navbar-default navbar-fixed-top'>
         <div className='container-fluid'>
           <div className='navbar-header'>
-            <button type='button' className='navbar-toggle collapsed' data-toggle='collapse' data-target='#bs-example-navbar-collapse-1' aria-expanded='false'>
+            <button type='button' className='navbar-toggle collapsed' data-toggle='collapse' data-target='#navbar' aria-expanded='false'>
               <span className='sr-only'>Toggle navigation</span>
               <span className='icon-bar'></span>
               <span className='icon-bar'></span>
               <span className='icon-bar'></span>
             </button>
-            <a className='navbar-brand' href='#'>Brand</a>
+            <Link to='/' className='navbar-brand'>Brand</Link>
           </div>
-
-          <div className='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
+          <div className='collapse navbar-collapse' id='navbar'>
             <ul className='nav navbar-nav navbar-right'>
               <NavLink to='/'>Home</NavLink>
               <NavLink to='test'>test</NavLink>
@@ -35,11 +33,5 @@ export class NavbarComponent extends React.Component<NavbarComponentProps, void>
     );
   }
 }
-
-// const mapStateToProps = (state, ownProps) => ({
-//   currentRoute: ownProps.location
-// });
-//
-// const Navbar = connect(mapStateToProps)(NavbarComponent);
 
 export default NavbarComponent;

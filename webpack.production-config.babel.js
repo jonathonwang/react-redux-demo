@@ -21,6 +21,14 @@ export const prodConfig = {
         test: /\.tsx$|\.ts$/,
         exclude: /node_modules/,
         loaders: ['babel-loader','ts-loader']
+      },
+      {
+        test: /\.(svg|woff|woff2|ttf|eot)(\?.*$|$)/,
+        loader: 'file-loader?name=[name].[ext]&publicPath=../fonts/&outputPath=fonts/'
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif)(\?.*$|$)/,
+        loader: 'file-loader?name=[name].[ext]&publicPath=../images/&outputPath=images/'
       }
     ]
   },

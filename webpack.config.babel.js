@@ -25,12 +25,20 @@ export const devConfig = {
         test: /\.tsx$|\.ts$/,
         exclude: /node_modules/,
         loaders: ['babel-loader','ts-loader']
+      },
+      {
+        test: /\.(svg|woff|woff2|ttf|eot)(\?.*$|$)/,
+        loader: 'file-loader?name=[name].[ext]&publicPath=../fonts/&outputPath=fonts/'
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif)(\?.*$|$)/,
+        loader: 'file-loader?name=[name].[ext]&publicPath=../images/&outputPath=images/'
       }
     ]
   },
   plugins: [
-    new WebpackNotifierPlugin({title: 'Webpack Development', noisy: true}),
-    new ExtractTextPlugin('css/app.css', {allChunks: true}),
+    new WebpackNotifierPlugin({ title: 'Webpack Development', noisy: true }),
+    new ExtractTextPlugin('css/app.css', { allChunks: true }),
   ]
 };
 

@@ -1,11 +1,13 @@
 import { ComponentClass } from 'react';
 
+// Container Imports
 import HomeComponent from '../containers/home.container';
 import TestComponent from '../containers/test.container';
+import NotFoundComponent from '../containers/notfound.container';
 
 interface IRoute {
   path: string;
-  component: ComponentClass<{}>;
+  component: ComponentClass<any>;
 }
 
 /**
@@ -14,7 +16,8 @@ interface IRoute {
  */
 export const RouterMap: Array<IRoute> = [
   { path: '/', component: HomeComponent },
-  { path: 'test', component: TestComponent }
+  { path: 'test', component: TestComponent },
+  { path: '*', component: NotFoundComponent }
 ];
 
 export default RouterMap;

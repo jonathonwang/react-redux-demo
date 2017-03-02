@@ -27,9 +27,9 @@ export class AppComponent extends React.Component<IAppComponentProps, IAppCompon
     dispatch(FetchTasks());
   }
   render(): JSX.Element {
-    const { children, dispatch } = this.props;
+    const { children } = this.props;
     return (
-      <div className='container-fluid mt50'>
+      <div className='root-container container-fluid'>
         <NavbarComponent/>
         {children}
         <AlertComponent/>
