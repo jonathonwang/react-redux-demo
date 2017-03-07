@@ -62,7 +62,9 @@ export const deleteTask = (taskData: { id: number }) => {
  * @return {[Promise]}
  */
 export const toggleTaskIsComplete = (taskData: { task: Task }) => {
-  let toggleTaskData = JSON.parse(JSON.stringify(taskData)); // Shallow clone of Object to avoid reference to state Object
+  // Shallow clone of Object to avoid reference to state Object
+  let toggleTaskData = JSON.parse(JSON.stringify(taskData));
+  // Toggle the task isComplete property before sending out the request
   toggleTaskData.task.isComplete = !toggleTaskData.task.isComplete;
   toggleTaskData = JSON.stringify(toggleTaskData.task);
   return fetch(`${baseUrl}/tasks/${taskData.task.id}`, { method: 'PUT', body: toggleTaskData, headers })
