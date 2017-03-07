@@ -7,7 +7,7 @@ import {
   CreateTask,
   DeleteTask,
   ToggleTaskIsComplete
-} from '../../../app/api/task.api';
+} from '../../../app/async-actions/task.async-actions';
 
 import { Task } from '../../../app/reducers/task.reducer';
 
@@ -61,7 +61,7 @@ describe('Async Task API Actions', () => {
           const actions = store.getActions();
           expect(actions.length).toEqual(1);
           expect(actions[0].type).toEqual(TaskActionTypes.INJECT_TASKS);
-          expect(actions[0].payload).toEqual({ tasks: [mockedTask] });
+          expect(actions[0].payload).toEqual({ tasks: [{id: mockedTask.id, title: mockedTask.title, isComplete: mockedTask.isComplete}] });
           done();
         });
         const request = jasmine.Ajax.requests.mostRecent();
@@ -129,7 +129,7 @@ describe('Async Task API Actions', () => {
         .then(() => {
           const actions = store.getActions();
           const expectedActions = [
-            { type: TaskActionTypes.ADD_TASK, payload: { task: new Task(mockedResponseTask) }},
+            { type: TaskActionTypes.ADD_TASK, payload: { task: { id: mockedResponseTask.id, title: mockedResponseTask.title, isComplete: mockedResponseTask.isComplete } }},
             { type: FormActionTypes.CLEAR_CREATE_FORM },
             { type: AlertActionTypes.SHOW_ALERT, payload: { status: 'success', message: 'Task Successfully Created' } }
           ];

@@ -45,7 +45,7 @@
     "@types/jasmine-ajax": "^3.1.32",
     "@types/react-addons-css-transition-group": "^15.0.1",
     "@types/react-addons-transition-group": "^0.14.19",
-    "@types/react-router-redux": "^4.0.41",
+    "@types/react-router-redux": "^4.0.42",
     "@types/redux-actions": "^1.2.2",
     "@types/whatwg-fetch": "0.0.33",
     "autoprefixer": "^6.5.3",

@@ -7,7 +7,7 @@ import AlertComponent from '../components/alert.component';
 import NavbarComponent from '../components/navbar.component';
 
 // Async Action Imports
-import { FetchTasks } from '../api/task.api';
+import { FetchTasks } from '../async-actions/task.async-actions';
 
 // App Component Props
 interface IAppComponentProps {

@@ -1,0 +1,26 @@
+.btn {
+  &.btn--task-toggle {
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    border: 0 solid transparent;
+    border-radius: 30px;
+    color: #666;
+
+    &:focus {
+      outline: 0;
+      background-color: transparent;
+    }
+    &:hover {
+      color: darken(#666, 10%);
+      background-color: transparent;
+    }
+
+    &.completed {
+      color: green;
+      &:hover {
+        color: darken(green, 10%);
+      }
+    }
+  }
+}
