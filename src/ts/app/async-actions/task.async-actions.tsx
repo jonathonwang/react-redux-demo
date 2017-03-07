@@ -1,5 +1,5 @@
-import { createAction, Action } from 'redux-actions';
 import { Dispatch } from 'react-redux';
+import { createAction, Action } from 'redux-actions';
 
 // Task Action Imports
 import {

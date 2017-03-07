@@ -8,15 +8,16 @@ import {
 const baseUrl = 'http://localhost:3000';
 
 // Setup Headers
-const headers = new Headers();
-headers.set('Content-Type', 'application/json');
+const headers = new Headers({
+  'Content-Type': 'application/json'
+});
 
 /**
  * checkResponse Helper to be used for AJAX Promises
- * @param  {[Response]} response [Response from API]
+ * @param  {[Response]} response
  * @return {[Response]}
  */
-const checkResponse = (response) => {
+const checkResponse = (response: Response) => {
   if (response.ok) {
     return response.json();
   }
