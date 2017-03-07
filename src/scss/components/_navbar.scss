@@ -1,0 +1,9 @@
+.navbar {
+  .navbar-collapse {
+    max-height: 340px;
+    transition: .5s ease max-height;
+    &.in {
+      max-height: auto;
+    }
+  }
+}

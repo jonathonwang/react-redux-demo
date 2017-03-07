@@ -8,15 +8,20 @@ import NavbarComponent from '../components/navbar.component';
 
 // Interface Imports
 import { IAlertState } from '../reducers/alert.reducer';
+import { INavbarState } from '../reducers/navbar.reducer';
 
 // Async Action Imports
 import { FetchTasks } from '../async-actions/task.async-actions';
+
+// Sync Action Imports
+import { ToggleNavbar } from '../actions/navbar.actions';
 import { HideAlert } from '../actions/alert.actions';
 
 // App Component Props
 interface IAppComponentProps {
   dispatch: Dispatch<Object>;
   alert: IAlertState;
+  navbar: INavbarState;
 }
 
 export class AppComponent extends React.Component<IAppComponentProps, void> {
@@ -25,10 +30,10 @@ export class AppComponent extends React.Component<IAppComponentProps, void> {
     dispatch(FetchTasks());
   }
   render(): JSX.Element {
-    const { alert, children, dispatch } = this.props;
+    const { navbar, alert, children, dispatch } = this.props;
     return (
       <div className='root-container container-fluid'>
-        <NavbarComponent/>
+        <NavbarComponent navbar={navbar} toggleNavbar={() => dispatch(ToggleNavbar())}/>
         {children}
         <AlertComponent alert={alert} hideAlert={() => dispatch(HideAlert())}/>
       </div>
@@ -37,7 +42,8 @@ export class AppComponent extends React.Component<IAppComponentProps, void> {
 }
 
 const mapStateToProps = (state) => ({
-  alert: state.alert
+  alert: state.alert,
+  navbar: state.navbar
 });
 
 const App = connect(mapStateToProps)(AppComponent);

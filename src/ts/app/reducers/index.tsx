@@ -11,6 +11,7 @@ import thunk from 'redux-thunk';
 import { taskReducer } from './task.reducer';
 import { alertReducer } from './alert.reducer';
 import { createFormReducer } from './create-form.reducer';
+import { navbarReducer } from './navbar.reducer';
 
 /**
  * [Combine Reducers to One Object]
@@ -21,7 +22,8 @@ const reducers = combineReducers({
   routing: routerReducer,
   tasks: taskReducer,
   createForm: createFormReducer,
-  alert: alertReducer
+  alert: alertReducer,
+  navbar: navbarReducer
 });
 
 /**
