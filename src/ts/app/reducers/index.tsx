@@ -13,6 +13,9 @@ import { alertReducer } from './alert.reducer';
 import { createFormReducer } from './create-form.reducer';
 import { navbarReducer } from './navbar.reducer';
 
+// Middleware
+import { navbarToggleMiddleware } from '../middleware/navbar.middleware';
+
 /**
  * [Combine Reducers to One Object]
  * {stateProperty: reducer}
@@ -31,7 +34,8 @@ const reducers = combineReducers({
  * @type {[Array of Middleware]}
  */
 const middleware = applyMiddleware(
-  thunk
+  thunk,
+  navbarToggleMiddleware
 );
 
 /**
