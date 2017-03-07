@@ -5,12 +5,12 @@ import { AlertComponent } from '../../../app/components/alert.component';
 
 describe('Alert Component', () => {
   let wrapper;
-  const dispatch = jasmine.createSpy('dispatch');
+  const hideAlert = jasmine.createSpy('hideAlert');
   beforeEach(() => {
-    dispatch.calls.reset();
+    hideAlert.calls.reset();
     const alert = { status: '', message: '', visible: false };
     wrapper = shallow(
-      <AlertComponent alert={alert} dispatch={dispatch}/>
+      <AlertComponent alert={alert} hideAlert={hideAlert}/>
     );
   });
   it('Should Render Correctly', () => {
@@ -34,10 +34,10 @@ describe('Alert Component', () => {
     const expectedAlertMessage = 'Danger Message.';
     expect(alertMessage).toEqual(expectedAlertMessage);
   });
-  it('Should Run closeAlert Method', () => {
+  it('Should Run hideAlert Method', () => {
     const closeBtn = wrapper.find('.close');
     closeBtn.simulate('click', { preventDefault() {} });
-    expect(dispatch).toHaveBeenCalled();
-    expect(dispatch.calls.count()).toEqual(1);
+    expect(hideAlert).toHaveBeenCalled();
+    expect(hideAlert.calls.count()).toEqual(1);
   });
 });

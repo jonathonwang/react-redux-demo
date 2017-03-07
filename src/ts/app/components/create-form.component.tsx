@@ -10,11 +10,7 @@ interface IAlertComponentProps {
   handleSubmitForm();
 }
 
-interface IAlertComponentState {
-  handleSubmitForm(event: any): void;
-}
-
-export class CreateFormComponent extends React.Component<IAlertComponentProps, IAlertComponentState> {
+export class CreateFormComponent extends React.Component<IAlertComponentProps, void> {
   private submitCreateForm(event: any): void {
     const { handleSubmitForm } = this.props;
     event.preventDefault();

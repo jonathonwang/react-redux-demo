@@ -28,14 +28,7 @@ interface IHomeComponentProps {
   dispatch: Dispatch<Object>;
 }
 
-// App Component State
-interface IHomeComponentState {
-  dispatch: Dispatch<any>;
-  componentDidMount(): void;
-  render(): JSX.Element;
-}
-
-export class HomeComponent extends React.Component<IHomeComponentProps, IHomeComponentState> {
+export class HomeComponent extends React.Component<IHomeComponentProps, void> {
   render(): JSX.Element {
     const { tasks, createForm, dispatch } = this.props;
 

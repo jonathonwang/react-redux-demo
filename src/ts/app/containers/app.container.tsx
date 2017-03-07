@@ -6,39 +6,39 @@ import { connect } from 'react-redux';
 import AlertComponent from '../components/alert.component';
 import NavbarComponent from '../components/navbar.component';
 
+// Interface Imports
+import { IAlertState } from '../reducers/alert.reducer';
+
 // Async Action Imports
 import { FetchTasks } from '../async-actions/task.async-actions';
+import { HideAlert } from '../actions/alert.actions';
 
 // App Component Props
 interface IAppComponentProps {
   dispatch: Dispatch<Object>;
+  alert: IAlertState;
 }
 
-// App Component State
-interface IAppComponentState {
-  dispatch: Dispatch<Object>;
-  componentDidMount(): void;
-  render(): JSX.Element;
-}
-
-export class AppComponent extends React.Component<IAppComponentProps, IAppComponentState> {
+export class AppComponent extends React.Component<IAppComponentProps, void> {
   private componentDidMount(): void {
     const { dispatch } = this.props;
     dispatch(FetchTasks());
   }
   render(): JSX.Element {
-    const { children } = this.props;
+    const { alert, children, dispatch } = this.props;
     return (
       <div className='root-container container-fluid'>
         <NavbarComponent/>
         {children}
-        <AlertComponent/>
+        <AlertComponent alert={alert} hideAlert={() => dispatch(HideAlert())}/>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  alert: state.alert
+});
 
 const App = connect(mapStateToProps)(AppComponent);
 

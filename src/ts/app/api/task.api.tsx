@@ -14,10 +14,12 @@ const headers = new Headers({
 
 /**
  * checkResponse Helper to be used for AJAX Promises
+ * Checks to make sure response is ok then resolves with JSON returned
+ * Or throws an error to be caught by async action with .catch();
  * @param  {[Response]} response
- * @return {[Response]}
+ * @return {[JSON]}
  */
-const checkResponse = (response: Response) => {
+const checkResponse = (response: Response): Promise<JSON> | never => {
   if (response.ok) {
     return response.json();
   }
@@ -27,9 +29,9 @@ const checkResponse = (response: Response) => {
 /**
  * fetchTasks
  * GET Request to Retrieve Tasks
- * @return {[Promise]}
+ * @return {[Promise]} || {[Never]}
  */
-export const fetchTasks = () => {
+export const fetchTasks = (): Promise<JSON> | never => {
   return fetch(`${baseUrl}/tasks`, { method: 'GET' })
   .then((response) => checkResponse(response));
 };
@@ -40,7 +42,7 @@ export const fetchTasks = () => {
  * @param  {[Object]}  taskData
  * @return {[Promise]}
  */
-export const createTask = (taskData: { title: string, isComplete: boolean }) => {
+export const createTask = (taskData: { title: string, isComplete: boolean }): Promise<JSON> | never => {
   const newTaskData = JSON.stringify(taskData);
   return fetch(`${baseUrl}/tasks`, { method: 'POST', body: newTaskData, headers })
   .then((response) => checkResponse(response));
@@ -51,7 +53,7 @@ export const createTask = (taskData: { title: string, isComplete: boolean }) => 
  * @param  {[Object]} taskData
  * @return {[Promise]}
  */
-export const deleteTask = (taskData: { id: number }) => {
+export const deleteTask = (taskData: { id: number }): Promise<JSON> | never => {
   return fetch(`${baseUrl}/tasks/${taskData.id}`, { method: 'DELETE' })
   .then((response) => checkResponse(response));
 };
@@ -61,7 +63,7 @@ export const deleteTask = (taskData: { id: number }) => {
  * @param  {[Object]} taskData
  * @return {[Promise]}
  */
-export const toggleTaskIsComplete = (taskData: { task: Task }) => {
+export const toggleTaskIsComplete = (taskData: { task: Task }): Promise<JSON> | never => {
   // Shallow clone of Object to avoid reference to state Object
   let toggleTaskData = JSON.parse(JSON.stringify(taskData));
   // Toggle the task isComplete property before sending out the request

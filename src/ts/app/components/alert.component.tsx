@@ -6,24 +6,15 @@ import { HideAlert } from '../actions/alert.actions';
 
 import { IAlertState } from '../reducers/alert.reducer';
 
-interface IAlertComponent {
-  closeAlert(event: any): void;
-  render(): JSX.Element;
-}
-
 interface IAlertComponentProps {
   alert: IAlertState;
-  dispatch: Dispatch<Object>;
+  hideAlert();
 }
 
-interface IAlertComponentState {
-  closeAlert(event: any): void;
-}
-
-export class AlertComponent extends React.Component<IAlertComponentProps, IAlertComponentState> implements IAlertComponent {
-  closeAlert(event: any): void {
+export class AlertComponent extends React.Component<IAlertComponentProps, void> {
+  private closeAlert(event: any): void {
     event.preventDefault();
-    this.props.dispatch(HideAlert());
+    this.props.hideAlert();
   }
   render(): JSX.Element {
     const { alert } = this.props;
@@ -37,10 +28,4 @@ export class AlertComponent extends React.Component<IAlertComponentProps, IAlert
   }
 }
 
-const mapStateToProps = (state) => ({
-  alert: state.alert
-});
-
-const Alert = connect(mapStateToProps)(AlertComponent);
-
-export default Alert;
+export default AlertComponent;
