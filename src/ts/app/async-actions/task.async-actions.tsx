@@ -41,9 +41,7 @@ import {
 export const FetchTasks = () => {
   return (dispatch) => {
     return fetchTasks()
-    .then((response) => {
-      dispatch(InjectRetrievedTasks({ tasks: response }));
-    })
+    .then((response) => dispatch(InjectRetrievedTasks({ tasks: response })))
     .catch((error) => dispatch(ShowAlert({ status: 'danger', message: 'Tasks Could Not be Loaded' })));
   };
 };
