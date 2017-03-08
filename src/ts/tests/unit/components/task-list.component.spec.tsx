@@ -23,7 +23,7 @@ describe('Task List Component', () => {
     const wrapperElement = wrapper.type();
     expect(wrapperElement).toEqual('li');
     const wrapperClass = wrapper.props().className;
-    expect(wrapperClass).toEqual('list-group-item');
+    expect(wrapperClass).toEqual('list-group-item task-item');
   });
   it('Should Render Toggle and Delete Buttons', () => {
     const buttons = wrapper.find('button');

@@ -26,7 +26,7 @@ describe('Create Form Component', () => {
     const wrapperType = wrapper.type();
     expect(wrapperType).toEqual('li');
     const wrapperClass = wrapper.props().className;
-    expect(wrapperClass).toEqual('list-group-item');
+    expect(wrapperClass).toEqual('list-group-item form-item');
     const textInput = wrapper.find('input');
     expect(textInput).toBeDefined();
     const textInputName = textInput.props().name;

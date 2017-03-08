@@ -1,5 +1,25 @@
-.list-group {
-  .list-group-item {
-    padding-top: 20px;
+.task-list-group {
+  .task-item {
+    transition: .15s ease-in-out background-color;
+    padding: 15px 20px;
+    #task-title {
+      display: inline-block;
+      font-size: 16px;
+      margin-left: 10px;
+      transform: translateY(3px);
+    }
+    .btn-danger {
+      transition: .3s ease-in-out opacity;
+      margin-top: 4px;
+      opacity: 0;
+    }
+    &:hover {
+      .btn-danger {
+        opacity: 1;
+      }
+    }
+    &.task-item--completed {
+      // background-color: #eee;
+    }
   }
 }

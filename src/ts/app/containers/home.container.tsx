@@ -49,8 +49,8 @@ export class HomeComponent extends React.Component<IHomeComponentProps, void> {
           </div>
         </div>
         <div className='row'>
-          <div className='col-xs-12'>
-            <ul className='list-group'>
+          <div className='col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3'>
+            <ul className='list-group task-list-group'>
               <CreateFormComponent
                 createForm={createForm}
                 handleInputUpdate={(title) => dispatch(UpdateCreateField({ title }))}

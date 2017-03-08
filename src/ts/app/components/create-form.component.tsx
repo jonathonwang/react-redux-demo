@@ -19,7 +19,7 @@ export class CreateFormComponent extends React.Component<IAlertComponentProps, v
   render() {
     const { createForm, handleInputUpdate, handleSubmitForm } = this.props;
     return (
-      <li className='list-group-item'>
+      <li className='list-group-item form-item'>
         <form onSubmit={(event: any) => this.submitCreateForm(event)}>
           <div className='form--group'>
             <input type='text' name='title' className='form-control' autoComplete='off'
