@@ -29,7 +29,7 @@ export class NavbarComponent extends React.Component<NavbarComponentProps, void>
               <span className='icon-bar'></span>
               <span className='icon-bar'></span>
             </button>
-            <Link to='/' className='navbar-brand'>Brand</Link>
+            <Link to='/' className='navbar-brand'>Tasky</Link>
           </div>
           <div className={collapseClassNames} id='navbar'>
             <ul className='nav navbar-nav navbar-right'>

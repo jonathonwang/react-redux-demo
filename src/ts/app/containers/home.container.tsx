@@ -46,7 +46,7 @@ export class HomeComponent extends React.Component<IHomeComponentProps, void> {
       <div>
         <div className='row'>
           <div className='col-xs-12'>
-            <h1 className='text-center'>Task App</h1>
+            <h1 className='text-center'>Tasks</h1>
           </div>
         </div>
         <div className='row'>
