@@ -124,7 +124,7 @@ describe('Async Task API Actions', () => {
 
     // Success Response Test
     describe('On Success', () => {
-      it('Dispatch Correct Actions', (done) => {
+      it('Dispatch Correct Actions in Sequence', (done) => {
         store.dispatch(CreateTask(mockedTask))
         .then(() => {
           const actions = store.getActions();
@@ -212,7 +212,7 @@ describe('Async Task API Actions', () => {
 
     // Success Response Test
     describe('On Success', () => {
-      it('Dispatch Correct Actions', (done) => {
+      it('Dispatch Correct Actions in Sequence', (done) => {
         store.dispatch(DeleteTask(mockedTask))
         .then(() => {
           const actions = store.getActions();

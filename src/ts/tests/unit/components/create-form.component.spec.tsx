@@ -25,14 +25,20 @@ describe('Create Form Component', () => {
   it('Should Render Correctly', () => {
     const wrapperType = wrapper.type();
     expect(wrapperType).toEqual('li');
+  });
+  it('Should Have Correct Classes', () => {
     const wrapperClass = wrapper.props().className;
     expect(wrapperClass).toEqual('list-group-item form-item');
+  });
+  it('Should Render A Form', () => {
+    const taskForm = wrapper.find('form');
+    expect(taskForm).toBeDefined();
+  });
+  it('Should Render A Text Input', () => {
     const textInput = wrapper.find('input');
     expect(textInput).toBeDefined();
     const textInputName = textInput.props().name;
     expect(textInputName).toEqual('title');
-    const taskForm = wrapper.find('form');
-    expect(taskForm).toBeDefined();
   });
   it('Should Have Text in Input given createForm Prop with title', () => {
     const createFormWithTitle = { title: 'Hello', isComplete: false };

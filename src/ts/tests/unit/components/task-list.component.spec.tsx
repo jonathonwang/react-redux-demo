@@ -22,16 +22,22 @@ describe('Task List Component', () => {
   it('Should Render Correctly', () => {
     const wrapperElement = wrapper.type();
     expect(wrapperElement).toEqual('li');
+  });
+  it('Should Have Correct Classes', () => {
     const wrapperClass = wrapper.props().className;
     expect(wrapperClass).toEqual('list-group-item task-item');
   });
-  it('Should Render Toggle and Delete Buttons', () => {
+  it('Should Render Two Buttons', () => {
     const buttons = wrapper.find('button');
     expect(buttons.length).toEqual(2);
-    const deleteBtn = wrapper.find('.btn-danger');
-    expect(deleteBtn).toBeDefined();
+  });
+  it('Should Render Toggle Button', () => {
     const toggleBtn = wrapper.find('.btn-primary');
     expect(toggleBtn).toBeDefined();
+  });
+  it('Should Render Delete Button', () => {
+    const deleteBtn = wrapper.find('.btn-danger');
+    expect(deleteBtn).toBeDefined();
   });
   it('Should Display Task Title', () => {
     const taskTitle = wrapper.find('.task-title').text();

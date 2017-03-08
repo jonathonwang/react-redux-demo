@@ -16,9 +16,13 @@ describe('Alert Component', () => {
   it('Should Render Correctly', () => {
     const wrapperElement = wrapper.type();
     expect(wrapperElement).toEqual('div');
+  });
+  it('Should Have Correct Classes', () => {
     const wrapperClasses = wrapper.props().className.split(' ');
     const expectedWrapperClasses = ['alert', 'alert-dismissable', 'alert-'];
     expect(wrapperClasses).toEqual(expectedWrapperClasses);
+  });
+  it('Should Contain Close Button', () => {
     const closeBtn = wrapper.find('.close');
     expect(closeBtn).toBeDefined();
   });
@@ -34,7 +38,7 @@ describe('Alert Component', () => {
     const expectedAlertMessage = 'Danger Message.';
     expect(alertMessage).toEqual(expectedAlertMessage);
   });
-  it('Should Run hideAlert Method', () => {
+  it('Click on Close Button Should Run hideAlert Method', () => {
     const closeBtn = wrapper.find('.close');
     closeBtn.simulate('click', { preventDefault() {} });
     expect(hideAlert).toHaveBeenCalled();
