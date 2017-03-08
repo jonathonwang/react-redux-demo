@@ -10,22 +10,22 @@ interface ITaskListComponentProps {
 }
 
 export class TaskListComponent extends React.Component<ITaskListComponentProps, void> {
-  render() {
+  render(): JSX.Element {
     const { task, deleteTask, toggleComplete } = this.props;
     const listItemClassNames: string = classNames('list-group-item', 'task-item', { 'task-item--completed': task.isComplete });
-    const toggleBtnClassNames: string = classNames('btn', 'btn--task-toggle', 'btn-xs', 'btn-default', { 'completed': task.isComplete });
+    const toggleBtnClassNames: string = classNames('task-togglebtn', 'btn', 'btn--task-toggle', 'btn-xs', 'btn-default', { 'completed': task.isComplete });
     const toggleBtnIconClassNames: string = classNames('fa', { 'fa-check-circle-o': task.isComplete, 'fa-circle-o': !task.isComplete });
     return (
       <li className={listItemClassNames} key={task.id}>
-          <button id='task-togglebtn' className={toggleBtnClassNames} onClick={() => toggleComplete(task)}>
-            <span className={toggleBtnIconClassNames}></span>
-          </button>
-          <span id='task-title'>
-            {task.title}
-          </span>
-          <button className='btn btn-danger btn-xs pull-right' onClick={() => deleteTask(task.id)}>
-            Delete
-          </button>
+        <button className={toggleBtnClassNames} onClick={() => toggleComplete(task)}>
+          <span className={toggleBtnIconClassNames}></span>
+        </button>
+        <span className='task-title'>
+          {task.title}
+        </span>
+        <button className='btn btn-danger btn-xs pull-right' onClick={() => deleteTask(task.id)}>
+          Delete
+        </button>
       </li>
     );
   }

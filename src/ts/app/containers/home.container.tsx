@@ -16,6 +16,7 @@ import {
 // Component Imports
 import CreateFormComponent from '../components/create-form.component';
 import TaskListComponent from '../components/task-list.component';
+import EmptyListComponent from '../components/empty-list.component';
 
 // Interface Imports
 import { ITask, Task } from '../reducers/task.reducer';
@@ -56,7 +57,7 @@ export class HomeComponent extends React.Component<IHomeComponentProps, void> {
                 handleInputUpdate={(title) => dispatch(UpdateCreateField({ title }))}
                 handleSubmitForm={() => dispatch(CreateTask(createForm))}
               />
-              {taskList}
+              {tasks.length > 0 ? taskList : <EmptyListComponent/>}
             </ul>
           </div>
         </div>

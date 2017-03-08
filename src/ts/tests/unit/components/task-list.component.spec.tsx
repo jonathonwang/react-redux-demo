@@ -34,7 +34,7 @@ describe('Task List Component', () => {
     expect(toggleBtn).toBeDefined();
   });
   it('Should Display Task Title', () => {
-    const taskTitle = wrapper.find('#task-title').text();
+    const taskTitle = wrapper.find('.task-title').text();
     expect(taskTitle).toBeDefined();
     expect(taskTitle).toEqual('123123');
   });
@@ -45,7 +45,7 @@ describe('Task List Component', () => {
     expect(deleteMethod).toHaveBeenCalled();
   });
   it('Click on Toggle Button Should Run Toggle Function', () => {
-    const toggleBtn = wrapper.find('#task-togglebtn');
+    const toggleBtn = wrapper.find('.task-togglebtn');
     toggleBtn.simulate('click');
     expect(toggleMethod.calls.count()).toEqual(1);
   });
