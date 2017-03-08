@@ -1,10 +1,6 @@
-// Redux Imports
+// NPM Imports
 import { combineReducers, createStore, applyMiddleware } from 'redux';
-
-// React Router Redux Imports
 import { routerReducer } from 'react-router-redux';
-
-// Middleware Imports
 import thunk from 'redux-thunk';
 
 // Reducer Imports
