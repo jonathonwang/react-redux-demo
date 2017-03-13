@@ -31,6 +31,17 @@ describe('Nav Link Component', () => {
     const expectedWrapperClasses = ['active'];
     expect(wrapperClasses).toEqual(expectedWrapperClasses);
   });
+  it('Should Not Have Active Class', () => {
+    const router = { isActive: (a, b) => false };
+    wrapper = shallow(
+      <NavLink to='/' router={router}>
+        Test
+      </NavLink>
+    );
+    const wrapperClasses = wrapper.props().className;
+    const expectedWrapperClasses = '';
+    expect(wrapperClasses).toEqual(expectedWrapperClasses);
+  });
   it('Should Have Correct Child Text', () => {
     const link = wrapper.find('Link');
     const linkText = link.children().text();

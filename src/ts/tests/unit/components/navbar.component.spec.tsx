@@ -20,13 +20,15 @@ describe('Navbar Component', () => {
   it('Should Render Correctly', () => {
     const wrapperElement = wrapper.type();
     expect(wrapperElement).toEqual('nav');
-    const wrapperClasses = wrapper.props().className.split(' ');
-    const expectedWrapperClasses = ['navbar', 'navbar-default', 'navbar-fixed-top'];
-    expect(wrapperClasses).toEqual(expectedWrapperClasses);
     const navbar = wrapper.find('#navbar');
     expect(navbar).toBeDefined();
   });
-  it('Should Run toggleNavbar Method', () => {
+  it('Should Have Correct Classes', () => {
+    const wrapperClasses = wrapper.props().className.split(' ');
+    const expectedWrapperClasses = ['navbar', 'navbar-default', 'navbar-fixed-top'];
+    expect(wrapperClasses).toEqual(expectedWrapperClasses);
+  });
+  it('Click on Toggle Btn Should Run toggleNavbar Method', () => {
     const toggleBtn = wrapper.find('button');
     toggleBtn.simulate('click');
     expect(toggleNavbar.calls.count()).toEqual(1);
