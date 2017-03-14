@@ -2,6 +2,37 @@
   .task-item {
     transition: .15s ease-in-out background-color;
     padding: 15px 20px;
+
+    &:before, &:after {
+      display: block;
+      width: 2px;
+      position: absolute;
+      left: 34px;
+      content: '';
+      background-color: lighten(#666, 20%);
+      cursor: default;
+    }
+    &:before {
+      height: 21px;
+      bottom: 0;
+      z-index: 2;
+    }
+    &:after {
+      top: -1px;
+      height: 24px;
+      z-index: 1;
+    }
+    &:nth-child(2) {
+      &:after {
+        display: none;
+      }
+    }
+    &:last-child {
+      &:before {
+        display: none;
+      }
+    }
+
     .task-title {
       display: inline-block;
       font-size: 16px;
@@ -19,7 +50,17 @@
       }
     }
     &.task-item--completed {
-      // background-color: #eee;
+      &:before {
+        background-color: green;
+      }
+      &:after {
+        background-color: green;
+      }
+      +.task-item:not(.task-item--completed) {
+        &:before {
+          background-color: linear-gradient(green, lighten(#666, 20%));
+        }
+      }
     }
   }
 }

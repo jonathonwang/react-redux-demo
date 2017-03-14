@@ -32,7 +32,7 @@ interface IHomeComponentProps {
 export class HomeComponent extends React.Component<IHomeComponentProps, void> {
   render(): JSX.Element {
     const { tasks, createForm, dispatch } = this.props;
-
+    const completedTaskCount = tasks.map((task) => task.isComplete).length;
     const taskList: Array<JSX.Element> = tasks.map((task): JSX.Element => (
       <TaskListComponent
         task={task}
